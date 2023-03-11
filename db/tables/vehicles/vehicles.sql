@@ -10,9 +10,8 @@ create table "Vehicle" (
     add_year   smallint not null check ( add_year <= date_part('year', CURRENT_DATE) AND add_year >= 1930 ),
     -- When become archived
     archive_year  smallint not null check ( (NOT status)
-                                                AND (archive_year <= date_part('year', CURRENT_DATE)
-                                                         AND archive_year >= 1930)
-                                                AND (add_year <= archive_year)  ) DEFAULT date_part('year', CURRENT_DATE),
+                                    AND (archive_year <= date_part('year', CURRENT_DATE) AND archive_year >= 1930)
+                                    AND (add_year <= archive_year) OR status) DEFAULT -1,
 
     foreign key (garage_id) references "Garages",
     foreign key (driver_id) references "Drivers"
