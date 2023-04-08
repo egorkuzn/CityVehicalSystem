@@ -11,3 +11,8 @@ create table "Vehicle-Auxiliary model" (
     foreign key (vehicle_id)   references "Vehicle",
     foreign key (auxiliary_id) references "Auxiliary models"
 );
+
+create trigger is_already_mapped_to_vehicle_type
+    before insert on "Vehicle-Auxiliary model"
+    for each row
+execute function is_already_mapped_to_vehicle_type();

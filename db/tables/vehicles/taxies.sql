@@ -10,3 +10,8 @@ create table "Vehicle-Taxi model" (
     foreign key (vehicle_id) references "Passengers transport",
     foreign key (taxi_id)    references "Taxis models"
 );
+
+create trigger is_already_mapped_to_vehicle_type
+    before insert on "Vehicle-Taxi model"
+    for each row
+execute function is_already_mapped_to_vehicle_type();

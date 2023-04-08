@@ -12,3 +12,8 @@ create table "Vehicle-Bus model" (
     foreign key (bus_id)     references "Buses models",
     foreign key (route_id)   references "Routes"
 );
+
+create trigger is_already_mapped_to_vehicle_type
+    before insert on "Vehicle-Bus model"
+    for each row
+execute function is_already_mapped_to_vehicle_type();
