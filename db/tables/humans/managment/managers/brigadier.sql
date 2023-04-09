@@ -5,3 +5,4 @@ create table "Brigadier" (
     foreign key (human_id)   references "Humans",
     foreign key (brigade_id) references "Brigades"
 );
+-- TODO: сделать проверку на самоподчиненнсоть
