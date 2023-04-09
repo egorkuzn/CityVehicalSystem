@@ -13,16 +13,6 @@ create table "Vehicle-Car model" (
     foreign key (car_model_id) references "Cars models"
 );
 
-insert into "Cars models" (model_name)
-values ('Toyota Corolla'),
-       ('Honda Civic'),
-       ('Ford F-Series'),
-       ('Chevrolet Silverado'),
-       ('Toyota Camry'),
-       ('Honda Accord'),
-       ('Nissan Altima'),
-       ('Ford Fusion');
-
 create trigger is_already_mapped_to_vehicle_type
 before insert on "Vehicle-Car model"
 for each row execute function is_already_mapped_to_vehicle_type();
