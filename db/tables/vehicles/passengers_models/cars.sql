@@ -40,3 +40,9 @@ values (18, 'Toyota Corolla'),
        (25, 'Infiniti QX60'),
        (26, 'Mercedes-Benz E 220 D 4 MATIC All-Terrain'),
        (27, 'Ford Galaxy');
+
+insert into "Vehicle-Car model" (vehicle_id, car_model_id)
+values (7, 18),
+       (8, 19),
+       (9, 20),
+       (10, 21);

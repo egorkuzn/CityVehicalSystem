@@ -37,3 +37,14 @@ values (11, 'Ford Transit'),
        (15, 'Iveco Bus Daily MIDIBUS'),
        (16, 'Mercedes-Benz Sprinter City 45'),
        (17, 'Mercedes-Benz Sprinter City 77');
+
+insert into "Vehicle-Shuttle model" (vehicle_id, shuttle_model_id, route_id)
+values (15, 11, 1),
+       (16, 12, 2),
+       (17, 13, 3),
+       (18, 14, 4),
+       (19, 14, 5),
+       (20, 15, 6),
+       (21, 16, 7),
+       (22, 17, 8),
+       (23, 12, 9);

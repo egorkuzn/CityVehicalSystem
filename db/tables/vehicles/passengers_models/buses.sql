@@ -34,3 +34,6 @@ values (1, 'ЛИАЗ-5292.65-03'),
        (8, 'НЕФАЗ-5294'),
        (9, 'КАВЗ-6858'),
        (10, 'Курсор Е433.00');
+
+insert into "Vehicle-Bus model" (vehicle_id, bus_model_id, route_id)
+values  (24, 10, 14);
