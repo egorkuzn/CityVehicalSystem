@@ -16,3 +16,14 @@ create trigger is_already_mapped_to_vehicle_type
     before insert on "Vehicle-Auxiliary model"
     for each row
 execute function is_already_mapped_to_vehicle_type();
+
+insert into "Auxiliary models" (model_name, description)
+values ('ГАЗ-33081 «Спасатель»', 'Пожарная машина'),
+       ('ГАЗ-33081 «Пожарная лестница»', 'Пожарная машина'),
+       ('ГАЗ-33081 «Пожарный автомобиль»', 'Пожарная машина');
+
+ insert into "Vehicle-Auxiliary model" (vehicle_id, auxiliary_id)
+ values (3, 1),
+        (4, 2),
+        (5, 1),
+        (6, 3);
