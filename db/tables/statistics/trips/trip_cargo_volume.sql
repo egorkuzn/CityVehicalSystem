@@ -2,7 +2,7 @@ create table "Trip-Cargo volume" (
     trip_id      int primary key check ( trip_id > 0 ),
     cargo_volume smallint not null check ( cargo_volume > 0),
 
-    foreign key (cargo_volume) references "Trips"
+    foreign key (trip_id) references "Trips"
 );
 
 insert into "Trips" (vehicle_id, distance)
@@ -26,6 +26,14 @@ values (1, 20),
 
 create or replace function trip_cargo_check() returns trigger as $$
 begin
+    if exists (
+        select *
+        from "Trip-Passengers volume" as TPV
+        where new.trip_id = TPV.trip_id
+    )
+    then raise exception 'This trip_id already uses by "Trip-Passengers volume" table';
+    end if;
+
     if not exists(
         select 1
         from "Vehicle-Truck model" as VTM,
@@ -58,7 +66,8 @@ for each row
 execute function trip_cargo_check();
 
 insert into "Trip-Cargo volume" (trip_id, cargo_volume)
-values ()
+values (1, 20),
+       (2, 20);
 
 
 
