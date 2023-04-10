@@ -39,5 +39,8 @@ for each row
 execute function department_chief_check();
 
 insert into "Department chief" (human_id, district_chef_id, department_id)
-values (27, 22, 1),
-       (31, 26, 5)
+values (27, 22, 8),
+       (28, 23, 9),
+       (29, 24, 10),
+       (30, 25, 11),
+       (31, 26, 12);

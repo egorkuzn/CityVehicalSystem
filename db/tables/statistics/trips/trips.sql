@@ -4,4 +4,7 @@ create table "Trips" (
     distance            int not null check (distance > 0),
 
     foreign key (vehicle_id) references "Vehicle"
-)
+);
+
+insert into "Trips"
+values
