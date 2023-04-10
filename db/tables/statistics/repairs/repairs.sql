@@ -8,3 +8,8 @@ create table "Repairs" (
 
     foreign key (vehicle_id) references "Vehicle"
 );
+
+-- TODO: триггер на ремонт автомобиля, который ещё не был выпущен
+
+insert into "Repairs" (vehicle_id, description, when_started, when_finished, price)
+values (1, 'Замена двигателя', '2022-05-11', '2022-06-11', 500);
