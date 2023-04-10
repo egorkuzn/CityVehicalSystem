@@ -29,3 +29,17 @@ create trigger hierarchy_check
     before insert on "Workers"
     for each row
 execute function worker_check();
+
+insert into "Workers" (human_id, brigade_id)
+values (1, 1),
+       (2, 2),
+       (3, 3),
+       (4, 4),
+       (5, 1),
+       (6, 2),
+       (7, 3),
+       (8, 4),
+       (9, 1),
+       (10, 2),
+       (11, 3),
+       (12, 4);
