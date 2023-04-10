@@ -33,3 +33,6 @@ values  (1,1),
         (2, 1);
 
 
+insert into "Vehicle-Truck model" (vehicle_id, truck_id)
+values  (38, 3);
+
