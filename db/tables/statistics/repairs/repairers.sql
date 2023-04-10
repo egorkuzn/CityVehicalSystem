@@ -7,3 +7,4 @@ create table "Repairers" (
     foreign key (repair_id) references "Repairs",
     foreign key (detail_id) references "Details"
 );
+
