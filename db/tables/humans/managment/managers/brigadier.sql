@@ -9,16 +9,21 @@ create table "Brigadier" (
 create or replace function brigadier_check() returns trigger as $$
 begin
     if exists (
-        select 1
+        select
+        from "Brigadier" as B
+        where (new.brigade_id = B.brigade_id)
+    ) or exists (
+        select
         from "Workers" as W,
             "Masters" as M,
             "District chief" as DC,
             "Department chief" as DepC
         where (new.human_id = W.human_id)
-        or  (new.human_id = M.human_id)
-        or  (new.human_id = DC.human_id)
-        or  (new.human_id = DepC.human_id)
-    ) then
+         or  (new.human_id = M.human_id)
+         or  (new.human_id = DC.human_id)
+         or  (new.human_id = DepC.human_id)
+    )
+        then
         raise exception 'Brigadier can be managed by himself/herself';
     end if;
     return new;
@@ -26,6 +31,13 @@ end;
 $$ language plpgsql;
 
 create trigger hierarchy_check
-before insert on "Brigadier"
+before insert or update on "Brigadier"
 for each row
 execute function brigadier_check();
+
+insert into "Brigadier" (human_id, brigade_id)
+values (13, 1),
+       (14, 2),
+       (15, 3),
+       (16, 4);
+

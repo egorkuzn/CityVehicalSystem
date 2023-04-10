@@ -26,7 +26,7 @@ end;
 $$ language plpgsql;
 
 create trigger hierarchy_check
-    before insert on "Workers"
+    before insert or update on "Workers"
     for each row
 execute function worker_check();
 

@@ -13,7 +13,7 @@ create table "Vehicle-Auxiliary model" (
 );
 
 create trigger is_already_mapped_to_vehicle_type
-    before insert on "Vehicle-Auxiliary model"
+    before insert or update on "Vehicle-Auxiliary model"
     for each row
 execute function is_already_mapped_to_vehicle_type();
 

@@ -14,7 +14,7 @@ create table "Vehicle-Car model" (
 );
 
 create trigger is_already_mapped_to_vehicle_type
-before insert on "Vehicle-Car model"
+before insert or update on "Vehicle-Car model"
 for each row execute function is_already_mapped_to_vehicle_type();
 
 insert into "Passenger transport models" (passengers_capacity)

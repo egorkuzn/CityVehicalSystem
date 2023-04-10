@@ -26,6 +26,6 @@ end;
 $$ language plpgsql;
 
 create trigger hierarchy_check
-    before insert on "Masters"
-    for each row
+before insert or update on "Masters"
+for each row
 execute function master_check();

@@ -24,7 +24,7 @@ values ('Volvo VNL 760', 20),
        ('International LoneStar', 20);
 
 create trigger is_already_mapped_to_vehicle_type
-before insert on "Vehicle-Truck model"
+before insert or update on "Vehicle-Truck model"
 for each row
 execute function is_already_mapped_to_vehicle_type();
 
