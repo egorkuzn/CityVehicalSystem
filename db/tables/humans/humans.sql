@@ -5,7 +5,7 @@ create table "Humans" (
     fathername varchar(70)
 );
 
-insert into "Humans" (firstname, surname, fathername)
+insert into "Humans" (firstname, fathername, surname)
 values ('Анна', 'Сергеевна', 'Иванова'),
 ('Борис', 'Александрович', 'Петров'),
 ('Вера', 'Николаевна', 'Смирнова'),

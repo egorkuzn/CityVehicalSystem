@@ -12,14 +12,20 @@ create or replace function district_chief_check() returns trigger as $$
 begin
     if exists (
         select 1
-        from "Workers" as W,
-             "Masters" as M,
-             "Brigadier" as B,
-             "Department chief" as DC
-        where (new.human_id = W.human_id)
-           or  (new.human_id = M.human_id)
-           or  (new.human_id = B.human_id)
-           or  (new.human_id = DC.human_id)
+        from "Workers" as W
+        where new.human_id = W.human_id
+    ) or exists (
+        select 1
+        from "Brigadier" as B
+        where new.human_id = B.human_id
+    ) or exists (
+        select 1
+        from "Masters" as M
+        where new.human_id = M.human_id
+    ) or exists (
+        select 1
+        from "Department chief" as DepC
+        where new.human_id = DepC.human_id
     ) then
         raise exception 'District chief can be managed by himself/herself';
     end if;
@@ -28,6 +34,13 @@ end;
 $$ language plpgsql;
 
 create trigger hierarchy_check
-    before insert on "District chief"
-    for each row
+before insert or update on "District chief"
+for each row
 execute function district_chief_check();
+
+insert into "District chief" (human_id, master_id, district_id)
+values (22, 17, 1),
+       (23, 18, 2),
+       (24, 19, 3),
+       (25, 20, 4),
+       (26, 21, 5);
