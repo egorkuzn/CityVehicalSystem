@@ -1,19 +1,19 @@
 create or replace function is_already_mapped_to_vehicle_type() returns trigger as $$
 begin
     if exists (
-        select
+        select 1
         from "Vehicle-Truck model" as VTruckM,
              "Vehicle-Auxiliary model" as VAM,
              "Vehicle-Bus model" as VBM,
              "Vehicle-Car model" as VCM,
              "Vehicle-Shuttle model" as VSM,
              "Vehicle-Taxi model" as VTaxiM
-        where (NEW.vehicle_id = VTruckM.vehicle_id)
-            OR (NEW.vehicle_id = VAM.vehicle_id)
-            OR (NEW.vehicle_id = VBM.vehicle_id)
-            OR (NEW.vehicle_id = VCM.vehicle_id)
-            OR (NEW.vehicle_id = VSM.vehicle_id)
-            OR (NEW.vehicle_id = VTaxiM.vehicle_id)
+        where (new.vehicle_id = VTruckM.vehicle_id)
+            or (new.vehicle_id = VAM.vehicle_id)
+            or (new.vehicle_id = VBM.vehicle_id)
+            or (new.vehicle_id = VCM.vehicle_id)
+            or (new.vehicle_id = VSM.vehicle_id)
+            or (new.vehicle_id = VTaxiM.vehicle_id)
     ) then
         raise exception 'Duplicate found';
     end if;
