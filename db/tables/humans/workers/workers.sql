@@ -10,14 +10,20 @@ create or replace function worker_check() returns trigger as $$
 begin
     if exists (
         select 1
-        from "Masters" as M,
-             "Brigadier" as B,
-             "District chief" as DC,
-             "Department chief" as DepC
-        where  (new.human_id = M.human_id)
-           or  (new.human_id = B.human_id)
-           or  (new.human_id = DC.human_id)
-           or  (new.human_id = DepC.human_id)
+        from "Masters" as M
+        where new.human_id = M.human_id
+    ) or exists (
+        select 1
+        from "Brigadier" as B
+        where new.human_id = B.human_id
+    ) or exists (
+        select 1
+        from "District chief" as DC
+        where new.human_id = DC.human_id
+    ) or exists (
+        select 1
+        from "Department chief" as DepC
+        where new.human_id = DepC.human_id
     ) then
         raise exception 'Worker can be managed by himself/herself';
     end if;

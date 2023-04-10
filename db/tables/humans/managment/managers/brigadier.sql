@@ -13,15 +13,21 @@ begin
         from "Brigadier" as B
         where (new.brigade_id = B.brigade_id)
     ) or exists (
-        select
-        from "Workers" as W,
-            "Masters" as M,
-            "District chief" as DC,
-            "Department chief" as DepC
-        where (new.human_id = W.human_id)
-         or  (new.human_id = M.human_id)
-         or  (new.human_id = DC.human_id)
-         or  (new.human_id = DepC.human_id)
+        select 1
+        from "Workers" as W
+        where new.human_id = W.human_id
+    ) or exists (
+        select 1
+        from "Masters" as M
+        where new.human_id = M.human_id
+    ) or exists (
+        select 1
+        from "District chief" as DC
+        where new.human_id = DC.human_id
+    ) or exists (
+        select 1
+        from "Department chief" as DepC
+        where new.human_id = DepC.human_id
     )
         then
         raise exception 'Brigadier can be managed by himself/herself';
