@@ -1,4 +1,4 @@
---Получить распределение водителей по автомобилям.
+-- 3. Получить распределение водителей по автомобилям.
 
 select vehicle_id,
     count(vehicle_id) as "Drivers to car distribution"

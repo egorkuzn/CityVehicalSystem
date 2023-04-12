@@ -1,4 +1,4 @@
--- Получить данные об автопарке предприятия.
+-- 1. Получить данные об автопарке предприятия.
 
 select distinct V.vehicle_id,
     case when V.vehicle_id = VSM.vehicle_id then SM.model_name
