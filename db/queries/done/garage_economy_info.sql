@@ -61,4 +61,4 @@ where GE.garage_economy_id = VGTaxi.garage_economy_id
     and GE.garage_economy_id = VGAuxilliary.garage_economy_id
     and GE.garage_economy_id = VGBus.garage_economy_id
     and GE.garage_economy_id = VGShuttle.garage_economy_id
-    and GE.garage_economy_id = VGCar.garage_economy_id
+    and GE.garage_economy_id = VGCar.garage_economy_id;

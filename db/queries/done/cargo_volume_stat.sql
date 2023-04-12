@@ -1,7 +1,6 @@
 -- Получить сведения о грузоперевозках, выполненных указанной
 -- автомашиной за обозначенный период.
 
-create view ""
 select vehicle_id,
     trip_date as "Date",
     cargo_volume as "Cargo volume transported",
