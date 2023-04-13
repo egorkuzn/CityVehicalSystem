@@ -11,3 +11,6 @@ create table "Repairs" (
 
 insert into "Repairs" (vehicle_id, description, when_started, when_finished, price)
 values (1, 'Замена двигателя', '2022-05-11', '2022-06-11', 500);
+
+insert into "Repairs" (vehicle_id, description, when_started, when_finished, price)
+values (1, 'Замена масла', '2023-02-11', '2023-02-11', 20);
