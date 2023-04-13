@@ -24,8 +24,13 @@ where case
     end
   and T.vehicle_id = V.vehicle_id
     and case
-            when :period_type = 'день' then extract(day from T.trip_date) = :period
-            when :period_type = 'месяц' then extract(month from T.trip_date) = :period
-            when :period_type = 'год' then extract(year from T.trip_date) = :period
+            when :period_type = 'день' then
+                extract(day from T.trip_date) = :day
+                and extract(month from T.trip_date) = :month
+                and extract(year from T.trip_date) = :year
+            when :period_type = 'месяц' then
+                extract(month from T.trip_date) = :month
+                and extract(year from T.trip_date) = :year
+            when :period_type = 'год' then extract(year from T.trip_date) = :year
         end
 group by V.vehicle_id;
