@@ -15,3 +15,6 @@ add constraint repairers_pr_key primary key (engineer_id, repair_id, detail_id);
 
 insert into "Repairers" (engineer_id, repair_id, detail_id)
 values (1, 1, 2);
+
+insert into "Repairers" (engineer_id, repair_id, detail_id)
+values (3, 3, 16);
