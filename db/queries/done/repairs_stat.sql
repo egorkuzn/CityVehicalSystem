@@ -1,7 +1,7 @@
 -- 6. Получить данные о числе ремонтов и их стоимости для автотранспорта
 -- определенной категории, отдельной марки автотранспорта или указанной
 -- автомашины за указанный период.
-select model_name,
+select param_name,
        count(repair_id),
        sum(price)
 from (select  R.repair_id,
@@ -10,7 +10,7 @@ from (select  R.repair_id,
             when :param_type = 'модель' then :param
             when :param_type = 'категория' then :param
             when :param_type = 'id' then :param
-        end as model_name
+        end as param_name
         from "Repairs" R left join "Vehicle" V on R.vehicle_id = V.vehicle_id
     --bus
          left join "Vehicle-Bus model" VBM on V.vehicle_id = VBM.vehicle_id
@@ -62,7 +62,7 @@ from (select  R.repair_id,
                       end
                 end
         ) RepairModel
-group by model_name;
+group by param_name;
 
 
 -- 11. Получить данные о числе использованных для ремонта указанных узлов и
