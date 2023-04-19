@@ -10,7 +10,9 @@ select WITH_NULL.garage_economy_id as "garage_economy_id",
         when letter is null then ''
         else letter
     end as "Garage address",
-    NO_NULL."Vehicle count",
+    case when NO_NULL."Vehicle count" isnull 0
+        else NO_NULL."Vehicle count"
+    end as "Vehicle count",
     NO_NULL."Taxi",
     NO_NULL."Truck",
     NO_NULL."Car",
