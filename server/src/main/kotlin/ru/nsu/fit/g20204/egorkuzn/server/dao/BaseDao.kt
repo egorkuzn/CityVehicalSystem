@@ -33,6 +33,4 @@ abstract class BaseDao<T : BaseEntity>(jdbcConfig: JdbcConfig) {
     }
 
     abstract fun returnEntity(resultSet: ResultSet): T
-
-    abstract fun runQuery(): List<T>
 }

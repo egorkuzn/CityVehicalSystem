@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.g20204.egorkuzn.server.service.ClientService
 
@@ -14,19 +15,27 @@ import ru.nsu.fit.g20204.egorkuzn.server.service.ClientService
 class Controller(@Autowired val clientService: ClientService) {
     @Operation(summary = "Получение информации о грузоперевозках")
     @GetMapping("cargo-volume-stat")
-    fun getCargoVolumeStat() = clientService.getCargoVolumeStat()
+    fun getCargoVolumeStat(
+        @RequestParam vehicleId: Long,
+        @RequestParam dateFrom: String,
+        @RequestParam dateTo: String
+    ) = clientService.getCargoVolumeStat(
+        vehicleId,
+        dateFrom,
+        dateTo
+    )
 
-//    @Operation(summary = "Получение распределения водителей по автотранспорту")
-//    @GetMapping("drivers-to-car-distribution")
-//    fun getDriversCarDistribution() = clientService.getDriversCarDistribution()
-//
-//    @Operation(summary = "Получение информации о гаражном хозяйстве")
-//    @GetMapping("garage-economy-info")
-//    fun gatGarageEconomyInfo() = clientService.getGarageEconomyInfo()
-//
-//    @Operation(summary = "Получение информации о автопарке")
-//    @GetMapping("info_about_autopark")
-//    fun getInfoAboutAutopark() = clientService.getInfoAboutAutopark()
+    @Operation(summary = "Получение распределения водителей по автотранспорту")
+    @GetMapping("drivers-to-car-distribution")
+    fun getDriversCarDistribution() = clientService.getDriversCarDistribution()
+
+    @Operation(summary = "Получение информации о гаражном хозяйстве")
+    @GetMapping("garage-economy-info")
+    fun gatGarageEconomyInfo() = clientService.getGarageEconomyInfo()
+
+    @Operation(summary = "Получение информации о автопарке")
+    @GetMapping("info_about_autopark")
+    fun getInfoAboutAutopark() = clientService.getInfoAboutAutopark()
 //
 //    @Operation(summary = "Получение информации о пробеге")
 //    @GetMapping("mileage_info")

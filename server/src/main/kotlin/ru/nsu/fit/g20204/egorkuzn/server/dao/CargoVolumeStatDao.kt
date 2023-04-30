@@ -18,7 +18,20 @@ class CargoVolumeStatDao(@Autowired jdbcConfig: JdbcConfig): BaseDao<CargoVolume
     }
 
 
-    override fun runQuery(): List<CargoVolumeStatEntity> {
-        TODO("Not yet implemented")
-    }
+    fun runQuery(
+        vehicleId: Long,
+        dateFrom: String,
+        dateTo: String
+    ) = sqlRun(
+        """
+            select vehicle_id,
+                trip_date,
+                cargo_volume,
+                distance
+            from "Trip-Cargo volume" TCV join "Trips" T on TCV.trip_id = T.trip_id
+            where T.vehicle_id = $vehicleId
+                and T.trip_date >= '$dateFrom'
+                and T.trip_date <= '$dateTo'
+        """.trimIndent()
+    )
 }
