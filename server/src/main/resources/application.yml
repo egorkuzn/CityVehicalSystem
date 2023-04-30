@@ -1,1 +1,16 @@
-server: 9000
+#configuration of the server
+server:
+  port: 8080
+
+#postgres
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:6000/CityVehicleSystem
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+    enabled: true
