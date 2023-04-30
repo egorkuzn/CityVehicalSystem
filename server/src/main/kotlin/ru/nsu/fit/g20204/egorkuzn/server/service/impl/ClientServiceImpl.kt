@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import ru.nsu.fit.g20204.egorkuzn.server.dao.CargoVolumeStatDao
 import ru.nsu.fit.g20204.egorkuzn.server.dao.DriversCarDistributionDao
 import ru.nsu.fit.g20204.egorkuzn.server.dao.GarageEconomyInfoDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.InfoAboutAutoparkDao
 import ru.nsu.fit.g20204.egorkuzn.server.service.ClientService
 
 @Service
@@ -14,7 +15,9 @@ class ClientServiceImpl(
     @Autowired
     val driversCarDistributionDao: DriversCarDistributionDao,
     @Autowired
-    val garageEconomyInfoDao: GarageEconomyInfoDao
+    val garageEconomyInfoDao: GarageEconomyInfoDao,
+    @Autowired
+    val infoAboutAutoparkDao: InfoAboutAutoparkDao
 ) : ClientService {
     override fun getCargoVolumeStat(
         vehicleId: Long,
@@ -30,9 +33,7 @@ class ClientServiceImpl(
 
     override fun getGarageEconomyInfo() = garageEconomyInfoDao.runQuery()
 
-    override fun getInfoAboutAutopark(): Any {
-        TODO("Not yet implemented")
-    }
+    override fun getInfoAboutAutopark() = infoAboutAutoparkDao.runQuery()
 //
 //    override fun getMileageInfo(): Any {
 //        TODO("Not yet implemented")
