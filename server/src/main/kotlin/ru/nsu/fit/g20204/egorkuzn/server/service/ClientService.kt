@@ -1,11 +1,8 @@
 package ru.nsu.fit.g20204.egorkuzn.server.service
 
-import ru.nsu.fit.g20204.egorkuzn.server.model.dto.CargoTripPeriodDto
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.CargoVolumeStatEntity
 
 interface ClientService {
-//    fun getMileageInfo(): Any
-//    fun getPassengerToRootsDistro(): Any
 //    fun getRepairsStat(): Any
 //    fun getVehicleAddArchive(): Any
 //    fun getVehicleDriversAndCount(): Any
@@ -15,4 +12,13 @@ interface ClientService {
     fun getDriversCarDistribution(): Any
     fun getGarageEconomyInfo(): Any
     fun getInfoAboutAutopark(): Any
+    fun getMileageInfo(
+        paramType: String,
+        param: String,
+        periodType: String,
+        day: String,
+        month: String,
+        year: String
+    ): Any
+    fun getPassengerToRootsDistro(): Any
 }

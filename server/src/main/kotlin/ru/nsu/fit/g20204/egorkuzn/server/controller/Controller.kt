@@ -36,15 +36,29 @@ class Controller(@Autowired val clientService: ClientService) {
     @Operation(summary = "Получение информации о автопарке")
     @GetMapping("info_about_autopark")
     fun getInfoAboutAutopark() = clientService.getInfoAboutAutopark()
-//
-//    @Operation(summary = "Получение информации о пробеге")
-//    @GetMapping("mileage_info")
-//    fun getMileageInfo() = clientService.getMileageInfo()
-//
-//    @Operation(summary = "Получение информации о распределении пассажиров по маршрутам")
-//    @GetMapping("passangers_to_roats_distr")
-//    fun getPassengerToRootsDistro() = clientService.getPassengerToRootsDistro()
-//
+
+    @Operation(summary = "Получение информации о пробеге")
+    @GetMapping("mileage_info")
+    fun getMileageInfo(
+        paramType: String,
+        param: String,
+        periodType: String,
+        day: String,
+        month: String,
+        year: String
+    ) = clientService.getMileageInfo(
+        paramType,
+        param,
+        periodType,
+        day,
+        month,
+        year
+    )
+
+    @Operation(summary = "Получение информации о распределении пассажиров по маршрутам")
+    @GetMapping("passangers_to_roats_distr")
+    fun getPassengerToRootsDistro() = clientService.getPassengerToRootsDistro()
+
 //    @Operation(summary = "Получение информации о ремонтах")
 //    @GetMapping("repairs_stat")
 //    fun getRepairsStat() = clientService.getRepairsStat()

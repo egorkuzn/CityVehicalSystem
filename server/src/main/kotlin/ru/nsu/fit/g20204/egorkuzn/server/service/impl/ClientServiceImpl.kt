@@ -2,10 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.server.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.nsu.fit.g20204.egorkuzn.server.dao.CargoVolumeStatDao
-import ru.nsu.fit.g20204.egorkuzn.server.dao.DriversCarDistributionDao
-import ru.nsu.fit.g20204.egorkuzn.server.dao.GarageEconomyInfoDao
-import ru.nsu.fit.g20204.egorkuzn.server.dao.InfoAboutAutoparkDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.*
 import ru.nsu.fit.g20204.egorkuzn.server.service.ClientService
 
 @Service
@@ -17,7 +14,11 @@ class ClientServiceImpl(
     @Autowired
     val garageEconomyInfoDao: GarageEconomyInfoDao,
     @Autowired
-    val infoAboutAutoparkDao: InfoAboutAutoparkDao
+    val infoAboutAutoparkDao: InfoAboutAutoparkDao,
+    @Autowired
+    val mileageInfoDao: MileageInfoDao,
+    @Autowired
+    val passengersToRoatsDistrDao: PassengersToRoutsDistrDao
 ) : ClientService {
     override fun getCargoVolumeStat(
         vehicleId: Long,
@@ -34,14 +35,24 @@ class ClientServiceImpl(
     override fun getGarageEconomyInfo() = garageEconomyInfoDao.runQuery()
 
     override fun getInfoAboutAutopark() = infoAboutAutoparkDao.runQuery()
-//
-//    override fun getMileageInfo(): Any {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getPassengerToRootsDistro(): Any {
-//        TODO("Not yet implemented")
-//    }
+
+    override fun getMileageInfo(
+        paramType: String,
+        param: String,
+        periodType: String,
+        day: String,
+        month: String,
+        year: String
+    ) = mileageInfoDao.runQuery(
+        paramType,
+        param,
+        periodType,
+        day,
+        month,
+        year
+    )
+
+    override fun getPassengerToRootsDistro() = passengersToRoatsDistrDao.runQuery()
 //
 //    override fun getRepairsStat(): Any {
 //        TODO("Not yet implemented")
