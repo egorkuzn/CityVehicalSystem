@@ -11,7 +11,7 @@ import java.sql.Statement
 abstract class BaseDao<T : BaseEntity>(jdbcConfig: JdbcConfig) {
     // Ленивая инициализация соединения с базой данных
     init {
-        if (isInitialised) {
+        if (!isInitialised) {
             connection = DriverManager.getConnection(
                 jdbcConfig.url,
                 jdbcConfig.username,
@@ -31,16 +31,16 @@ abstract class BaseDao<T : BaseEntity>(jdbcConfig: JdbcConfig) {
         val result = ArrayList<T>()
 
         try {
-            val statement: Statement = connection!!.createStatement()
-            val SQL = sqlQuery
-            val resultSet: ResultSet = statement.executeQuery(SQL)
+            val statement: Statement = connection.createStatement() ?: return result
+            val resultSet: ResultSet = statement.executeQuery(sqlQuery)
 
             while (resultSet.next()) {
                 result.add(returnEntity(resultSet))
             }
-        } catch (throwables: SQLException) {
-            throwables.printStackTrace()
+        } catch (throwable: SQLException) {
+            throwable.printStackTrace()
         }
+
         return result
     }
 
