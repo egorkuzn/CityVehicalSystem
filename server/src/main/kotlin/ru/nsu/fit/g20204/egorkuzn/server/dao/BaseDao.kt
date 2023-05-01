@@ -2,11 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao
 
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.BaseEntity
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.ResultSet
-import java.sql.SQLException
-import java.sql.Statement
+import java.sql.*
 
 abstract class BaseDao<T : BaseEntity>(jdbcConfig: JdbcConfig) {
     // Ленивая инициализация соединения с базой данных

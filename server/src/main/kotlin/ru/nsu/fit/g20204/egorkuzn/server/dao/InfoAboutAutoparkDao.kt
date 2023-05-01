@@ -1,13 +1,13 @@
 package ru.nsu.fit.g20204.egorkuzn.server.dao
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.InfoAboutAutoparkEntity
 import java.sql.ResultSet
 
-@Service
-class InfoAboutAutoparkDao(@Autowired jdbcConfig: JdbcConfig): BaseDao<InfoAboutAutoparkEntity>(jdbcConfig){
+@Repository
+class InfoAboutAutoparkDao(@Autowired jdbcConfig: JdbcConfig) : BaseDao<InfoAboutAutoparkEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         InfoAboutAutoparkEntity(
             getLong("vehicle_id"),

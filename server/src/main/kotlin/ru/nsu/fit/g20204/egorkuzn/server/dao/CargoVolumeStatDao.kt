@@ -1,13 +1,13 @@
 package ru.nsu.fit.g20204.egorkuzn.server.dao
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.CargoVolumeStatEntity
 import java.sql.ResultSet
 
-@Service
-class CargoVolumeStatDao(@Autowired jdbcConfig: JdbcConfig): BaseDao<CargoVolumeStatEntity>(jdbcConfig) {
+@Repository
+class CargoVolumeStatDao(@Autowired jdbcConfig: JdbcConfig) : BaseDao<CargoVolumeStatEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         CargoVolumeStatEntity(
             getLong("vehicle_id"),

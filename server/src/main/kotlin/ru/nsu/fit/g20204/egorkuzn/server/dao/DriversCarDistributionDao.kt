@@ -1,12 +1,12 @@
 package ru.nsu.fit.g20204.egorkuzn.server.dao
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.DriversCarDistributionEntity
 import java.sql.ResultSet
 
-@Service
+@Repository
 class DriversCarDistributionDao(@Autowired jdbcConfig: JdbcConfig) : BaseDao<DriversCarDistributionEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         DriversCarDistributionEntity(

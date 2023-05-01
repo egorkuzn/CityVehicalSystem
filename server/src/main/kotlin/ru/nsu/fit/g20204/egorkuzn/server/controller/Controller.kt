@@ -59,10 +59,54 @@ class Controller(@Autowired val clientService: ClientService) {
     @GetMapping("passangers_to_roats_distr")
     fun getPassengerToRootsDistro() = clientService.getPassengerToRootsDistro()
 
-//    @Operation(summary = "Получение информации о ремонтах")
-//    @GetMapping("repairs_stat")
-//    fun getRepairsStat() = clientService.getRepairsStat()
-//
+    @Operation(summary = """Получить данные о числе ремонтов и их стоимости для автотранспорта
+                            определенной категории, отдельной марки автотранспорта или указанной
+                            автомашины за указанный период.""")
+    @GetMapping("repairs_stat_transport")
+    fun getRepairsStatTransport(
+        paramType: String,
+        param: String,
+        fromDate: String,
+        toDate: String
+    ) = clientService.getRepairsStatTransport(
+        paramType,
+        param,
+        fromDate,
+        toDate
+    )
+
+    @Operation(summary = """Получить данные о числе использованных для ремонта указанных узлов и
+                            агрегатов для транспорта определенной категории, отдельной марки
+                            автотранспорта или конкретной автомашины за указанный период.""")
+    @GetMapping("repairs_stat_node")
+    fun getRepairsStatNode(
+        paramType: String,
+        param: String,
+        fromDate: String,
+        toDate: String
+    ) = clientService.getRepairsStatNode(
+        paramType,
+        param,
+        fromDate,
+        toDate
+    )
+
+    @Operation(summary = """Получить данные о работах, выполненных указанным специалистом
+                            (сварщиком, слесарем и т.д.) за обозначенный период в целом и по
+                            конкретной автомашине.""")
+    @GetMapping("repairs_stat_engineer")
+    fun getRepairsStatEngineer(
+        vehicleId: Long,
+        specialisation: String,
+        fromDate: String,
+        toDate: String
+    ) = clientService.getRepairsStatEngineer(
+        vehicleId,
+        specialisation,
+        fromDate,
+        toDate
+    )
+
 //    @Operation(summary = "Получить сведения о полученной и списанной автотехники за указанный период")
 //    @GetMapping("vehicle_add_archive")
 //    fun getVehicleAddArchive() = clientService.getVehicleAddArchive()

@@ -18,7 +18,13 @@ class ClientServiceImpl(
     @Autowired
     val mileageInfoDao: MileageInfoDao,
     @Autowired
-    val passengersToRoatsDistrDao: PassengersToRoutsDistrDao
+    val passengersToRoatsDistrDao: PassengersToRoutsDistrDao,
+    @Autowired
+    val repairsStatTransportDao: RepairsStatTransportDao,
+    @Autowired
+    val repairsStatNodeDao: RepairsStatNodeDao,
+    @Autowired
+    val repairsStatEngineerDao: RepairsStatEngineerDao
 ) : ClientService {
     override fun getCargoVolumeStat(
         vehicleId: Long,
@@ -53,6 +59,42 @@ class ClientServiceImpl(
     )
 
     override fun getPassengerToRootsDistro() = passengersToRoatsDistrDao.runQuery()
+
+    override fun getRepairsStatTransport(
+        paramType: String,
+        param: String,
+        fromDate: String,
+        toDate: String
+    ) = repairsStatTransportDao.runQuery(
+        paramType,
+        param,
+        fromDate,
+        toDate
+    )
+
+    override fun getRepairsStatNode(
+        paramType: String,
+        param: String,
+        fromDate: String,
+        toDate: String
+    ) = repairsStatNodeDao.runQuery(
+        paramType,
+        param,
+        fromDate,
+        toDate
+    )
+
+    override fun getRepairsStatEngineer(
+        vehicleId: Long,
+        specialisation: String,
+        fromDate: String,
+        toDate: String
+    ) = repairsStatEngineerDao.runQuery(
+        vehicleId,
+        specialisation,
+        fromDate,
+        toDate
+    )
 //
 //    override fun getRepairsStat(): Any {
 //        TODO("Not yet implemented")
