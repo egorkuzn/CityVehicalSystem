@@ -23,9 +23,9 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
-                // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
                 implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
+                implementation("org.jetbrains.compose.material3:material3-desktop:1.4.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
             }
         }
         val jvmTest by getting
