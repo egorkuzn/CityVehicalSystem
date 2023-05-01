@@ -45,5 +45,8 @@ interface ClientService {
         toDate: String
     ): Any
 
-//    fun getVehicleAddArchive(): Any
+    fun getVehicleAddArchive(
+        fromYear: String,
+        toYear: String
+    ): Any
 }

@@ -24,7 +24,9 @@ class ClientServiceImpl(
     @Autowired
     val repairsStatNodeDao: RepairsStatNodeDao,
     @Autowired
-    val repairsStatEngineerDao: RepairsStatEngineerDao
+    val repairsStatEngineerDao: RepairsStatEngineerDao,
+    @Autowired
+    val vehicleAddArchiveDao: VehicleAddArchiveDao
 ) : ClientService {
     override fun getCargoVolumeStat(
         vehicleId: Long,
@@ -94,6 +96,14 @@ class ClientServiceImpl(
         specialisation,
         fromDate,
         toDate
+    )
+
+    override fun getVehicleAddArchive(
+        fromYear: String,
+        toYear: String
+    ) = vehicleAddArchiveDao.runQuery(
+        fromYear,
+        toYear
     )
 //
 //    override fun getRepairsStat(): Any {

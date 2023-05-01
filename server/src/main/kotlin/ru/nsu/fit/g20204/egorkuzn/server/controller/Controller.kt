@@ -40,12 +40,12 @@ class Controller(@Autowired val clientService: ClientService) {
     @Operation(summary = "Получение информации о пробеге")
     @GetMapping("mileage_info")
     fun getMileageInfo(
-        paramType: String,
-        param: String,
-        periodType: String,
-        day: String,
-        month: String,
-        year: String
+        @RequestParam paramType: String,
+        @RequestParam param: String,
+        @RequestParam periodType: String,
+        @RequestParam day: String,
+        @RequestParam month: String,
+        @RequestParam year: String
     ) = clientService.getMileageInfo(
         paramType,
         param,
@@ -64,10 +64,10 @@ class Controller(@Autowired val clientService: ClientService) {
                             автомашины за указанный период.""")
     @GetMapping("repairs_stat_transport")
     fun getRepairsStatTransport(
-        paramType: String,
-        param: String,
-        fromDate: String,
-        toDate: String
+        @RequestParam paramType: String,
+        @RequestParam param: String,
+        @RequestParam fromDate: String,
+        @RequestParam toDate: String
     ) = clientService.getRepairsStatTransport(
         paramType,
         param,
@@ -80,10 +80,10 @@ class Controller(@Autowired val clientService: ClientService) {
                             автотранспорта или конкретной автомашины за указанный период.""")
     @GetMapping("repairs_stat_node")
     fun getRepairsStatNode(
-        paramType: String,
-        param: String,
-        fromDate: String,
-        toDate: String
+        @RequestParam paramType: String,
+        @RequestParam param: String,
+        @RequestParam fromDate: String,
+        @RequestParam toDate: String
     ) = clientService.getRepairsStatNode(
         paramType,
         param,
@@ -96,10 +96,10 @@ class Controller(@Autowired val clientService: ClientService) {
                             конкретной автомашине.""")
     @GetMapping("repairs_stat_engineer")
     fun getRepairsStatEngineer(
-        vehicleId: Long,
-        specialisation: String,
-        fromDate: String,
-        toDate: String
+        @RequestParam vehicleId: Long,
+        @RequestParam specialisation: String,
+        @RequestParam fromDate: String,
+        @RequestParam toDate: String
     ) = clientService.getRepairsStatEngineer(
         vehicleId,
         specialisation,
@@ -107,9 +107,15 @@ class Controller(@Autowired val clientService: ClientService) {
         toDate
     )
 
-//    @Operation(summary = "Получить сведения о полученной и списанной автотехники за указанный период")
-//    @GetMapping("vehicle_add_archive")
-//    fun getVehicleAddArchive() = clientService.getVehicleAddArchive()
+    @Operation(summary = "Получить сведения о полученной и списанной автотехники за указанный период")
+    @GetMapping("vehicle_add_archive")
+    fun getVehicleAddArchive(
+        @RequestParam fromYear: String,
+        @RequestParam toYear: String
+    ) = clientService.getVehicleAddArchive(
+        fromYear,
+        toYear
+    )
 //
 //    @Operation(summary = "Получить перечень и общее число водителей по предприятию, по указанной автомашине.")
 //    @GetMapping("vehicle_drivers_and_count")
