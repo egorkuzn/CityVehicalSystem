@@ -26,7 +26,15 @@ class ClientServiceImpl(
     @Autowired
     val repairsStatEngineerDao: RepairsStatEngineerDao,
     @Autowired
-    val vehicleAddArchiveDao: VehicleAddArchiveDao
+    val vehicleAddArchiveDao: VehicleAddArchiveDao,
+    @Autowired
+    val vehicleDriversAndCountDao: VehicleDriversAndCountDao,
+    @Autowired
+    val vehicleToCompanyDistributionDao: VehicleToCompanyDistributionDao,
+    @Autowired
+    val workersHierarchyInfoDao: WorkersHierarchyInfoDao,
+    @Autowired
+    val workersHierarchyInfoManagerDao: WorkersHierarchyInfoManagerDao
 ) : ClientService {
     override fun getCargoVolumeStat(
         vehicleId: Long,
@@ -105,24 +113,12 @@ class ClientServiceImpl(
         fromYear,
         toYear
     )
-//
-//    override fun getRepairsStat(): Any {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getVehicleAddArchive(): Any {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getVehicleDriversAndCount(): Any {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getVehicleToCompanyDistribution(): Any {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getWorkersHierarchyInfo(): Any {
-//        TODO("Not yet implemented")
-//    }
+
+    override fun getVehicleDriversAndCount(vehicleId: Long) = vehicleDriversAndCountDao.runQuery(vehicleId)
+
+    override fun getVehicleToCompanyDistribution() = vehicleToCompanyDistributionDao.runQuery()
+
+    override fun getWorkersHierarchyInfo() = workersHierarchyInfoDao.runQuery()
+
+    override fun getWorkersHierarchyInfoManager(managerId: Long) = workersHierarchyInfoManagerDao.runQuery(managerId)
 }

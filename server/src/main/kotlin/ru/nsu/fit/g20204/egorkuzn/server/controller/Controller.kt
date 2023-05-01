@@ -116,16 +116,25 @@ class Controller(@Autowired val clientService: ClientService) {
         fromYear,
         toYear
     )
-//
-//    @Operation(summary = "Получить перечень и общее число водителей по предприятию, по указанной автомашине.")
-//    @GetMapping("vehicle_drivers_and_count")
-//    fun getVehicleDriversAndCount() = clientService.getVehicleDriversAndCount()
-//
-//    @Operation(summary = "Получить данные о распределении автотранспорта на предприятии.")
-//    @GetMapping("vehicle_to_company_distribution")
-//    fun getVehicleToCompanyDistribution() = clientService.getVehicleToCompanyDistribution()
-//
-//    @Operation(summary = "Получить данные о подчиненности персонала: рабочие -бригадиры мастера - начальники участков и цехов.")
-//    @GetMapping("workers_hierarchy_info")
-//    fun getWorkersHierarchyInfo() = clientService.getWorkersHierarchyInfo()
+
+    @Operation(summary = "Получить перечень и общее число водителей по предприятию, по указанной автомашине.")
+    @GetMapping("vehicle_drivers_and_count")
+    fun getVehicleDriversAndCount(
+        @RequestParam vehicleId: Long
+    ) = clientService.getVehicleDriversAndCount(vehicleId)
+
+    @Operation(summary = "Получить данные о распределении автотранспорта на предприятии.")
+    @GetMapping("vehicle_to_company_distribution")
+    fun getVehicleToCompanyDistribution() = clientService.getVehicleToCompanyDistribution()
+
+    @Operation(summary = "Получить данные о подчиненности персонала: рабочие -бригадиры мастера - начальники участков и цехов.")
+    @GetMapping("workers_hierarchy_info_all")
+    fun getWorkersHierarchyInfo() = clientService.getWorkersHierarchyInfo()
+
+    @Operation(summary = """Получить состав подчиненных указанного бригадира,
+                            мастера и пр.""")
+    @GetMapping("workers_hierarchy_info_manager")
+    fun getWorkersHierarchyInfoManager(
+        @RequestParam managerId: Long
+    ) = clientService.getWorkersHierarchyInfoManager(managerId)
 }

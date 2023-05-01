@@ -3,16 +3,10 @@ package ru.nsu.fit.g20204.egorkuzn.server.service
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.CargoVolumeStatEntity
 
 interface ClientService {
-//    fun getVehicleDriversAndCount(): Any
-//    fun getVehicleToCompanyDistribution(): Any
-//    fun getWorkersHierarchyInfo(): Any
     fun getCargoVolumeStat(vehicleId: Long, dateFrom: String, dateTo: String): List<CargoVolumeStatEntity>
     fun getDriversCarDistribution(): Any
-
     fun getGarageEconomyInfo(): Any
-
     fun getInfoAboutAutopark(): Any
-
     fun getMileageInfo(
         paramType: String,
         param: String,
@@ -49,4 +43,12 @@ interface ClientService {
         fromYear: String,
         toYear: String
     ): Any
+
+    fun getVehicleDriversAndCount(vehicleId: Long): Any
+
+    fun getVehicleToCompanyDistribution(): Any
+
+    fun getWorkersHierarchyInfo(): Any
+
+    fun getWorkersHierarchyInfoManager(managerId: Long): Any
 }
