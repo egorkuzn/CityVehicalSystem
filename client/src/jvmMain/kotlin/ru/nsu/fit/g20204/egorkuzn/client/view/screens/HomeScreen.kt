@@ -22,7 +22,7 @@ fun HomeScreen(
         Text(navController.currentScreen.value)
         Button(
             onClick = {
-                navController.navigate(Screen.ProfileScreens.name)
+                navController.navigate(Screen.RepairsStatTransport.name)
             }) {
             Text("Navigate to Profile")
         }

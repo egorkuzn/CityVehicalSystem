@@ -8,7 +8,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -27,11 +26,11 @@ import ru.nsu.fit.g20204.egorkuzn.client.view.screens.SettingScreen
 @Preview
 fun AppViewDesktop() {
     val screens = Screen.values().toList()
-    val navController by rememberNavController(Screen.HomeScreen.name)
+    val navController by rememberNavController(Screen.InfoAboutAutopark.name)
     val currentScreen by remember {
         navController.currentScreen
     }
-
+HashMap
     MaterialTheme {
         Surface(
             modifier = Modifier.background(color = MaterialTheme.colorScheme.background)
@@ -61,7 +60,7 @@ fun AppViewDesktop() {
                                                 scope.launch { drawerState.close() }
                                                 navController.navigate(item.name)
                                             },
-                                            modifier = Modifier.height(((item.label.length / 40 + 1) * 60).dp)
+                                            modifier = Modifier.height((item.lines * 60).dp)
                                         )
                                 }
                             }
@@ -85,47 +84,66 @@ fun AppViewDesktop() {
  */
 enum class Screen(
     val label: String,
-    val icon: ImageVector
+    val lines: Short
 ) {
-    HomeScreen(
+    CargoVolumeStat(
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
+    ),
+    DriversCarDistribution(
+        label = "Распределение водителей по автомобилям.",
+        lines = 1
+    ),
+    GarageEconomyInfo(
+        label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
+        lines = Icons.Filled.Notifications
+    ),
+    InfoAboutAutopark(
         label = "Данные об автопарке предприятия.",
-        icon = Icons.Filled.Home
+        lines = Icons.Filled.Home
     ),
-    NotificationsScreen3(
-        label = "Перечень и общее число водителей по предприятию, по указанной а",
-        icon = Icons.Filled.Notifications
-    ),
-    SettingsScreen3(
-        label = "Распределение водителей по автомобилям.",
-        icon = Icons.Filled.Settings
-    ),
-    NotificationsScreen4(
+    MileageInfo(
         label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        icon = Icons.Filled.Notifications
+        lines = Icons.Filled.Notifications
     ),
-    SettingsScreen4(
+    PassengersToRoutsDistr(
         label = "Распределение водителей по автомобилям.",
-        icon = Icons.Filled.Settings
+        lines = Icons.Filled.Settings
     ),
-    NotificationsScreen2(
+    RepairsStatEngineer(
         label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        icon = Icons.Filled.Notifications
+        lines = Icons.Filled.Notifications
     ),
-    SettingsScreen2(
+    RepairsStatNode(
         label = "Распределение водителей по автомобилям.",
-        icon = Icons.Filled.Settings
+        lines = Icons.Filled.Settings
     ),
-    NotificationsScreen(
-        label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        icon = Icons.Filled.Notifications
-    ),
-    SettingsScreen(
-        label = "Распределение водителей по автомобилям.",
-        icon = Icons.Filled.Settings
-    ),
-    ProfileScreens(
+    RepairsStatTransport(
         label = "Данные о распределении пассажирского автотранспорта по маршрутам.",
-        icon = Icons.Filled.Face
+        lines = Icons.Filled.Face
+    ),
+    VehicleAddArchive(
+        label = "Распределение водителей по автомобилям.",
+        lines = Icons.Filled.Settings
+    ),
+    VehicleDriversAndCount(
+        label = "Распределение водителей по автомобилям.",
+        lines = Icons.Filled.Settings
+    ),
+    VehicleToCompanyDistr(
+        label = "Распределение водителей по автомобилям.",
+        lines = Icons.Filled.Settings
+    ),
+    WorkersHierarchyInfo(
+        label = "Распределение водителей по автомобилям.",
+        lines = Icons.Filled.Settings
+    ),
+    WorkersHirarchyInfoManager(
+        label = "Распределение водителей по автомобилям.",
+        lines = Icons.Filled.Settings
     )
 }
 
@@ -135,19 +153,19 @@ fun CustomNavigationHost(
     navController: NavController
 ) {
     NavigationHost(navController) {
-        composable(Screen.HomeScreen.name) {
+        composable(Screen.InfoAboutAutopark.name) {
             HomeScreen(navController)
         }
 
-        composable(Screen.NotificationsScreen.name) {
+        composable(Screen.RepairsStatEngineer.name) {
             NotificationScreen(navController)
         }
 
-        composable(Screen.SettingsScreen.name) {
+        composable(Screen.VehicleAddArchive.name) {
             SettingScreen(navController)
         }
 
-        composable(Screen.ProfileScreens.name) {
+        composable(Screen.RepairsStatTransport.name) {
             ProfileScreen(navController)
         }
 

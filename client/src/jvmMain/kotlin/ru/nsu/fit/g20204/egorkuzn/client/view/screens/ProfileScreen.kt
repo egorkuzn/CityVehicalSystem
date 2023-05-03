@@ -22,7 +22,7 @@ fun ProfileScreen(
         Text(navController.currentScreen.value)
         Button(
             onClick = {
-                navController.navigate(Screen.NotificationsScreen.name)
+                navController.navigate(Screen.RepairsStatEngineer.name)
             }) {
             Text("Navigate to Notification")
         }
