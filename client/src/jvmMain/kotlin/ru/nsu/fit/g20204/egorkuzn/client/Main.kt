@@ -30,7 +30,7 @@ fun main() = application {
             size = getPreferredWindowSize(1000, 1000)
         ),
     ) {
-        AppViewDesktop()
+        AppViewDesktop.render()
     }
 }
 

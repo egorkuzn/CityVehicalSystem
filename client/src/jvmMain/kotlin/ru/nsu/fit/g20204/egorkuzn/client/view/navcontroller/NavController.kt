@@ -4,21 +4,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.Screen
 
 /**
- * NavController Class
+ * Класс навигации
  */
 class NavController(
-    private val startDestination: String,
-    private var backStackScreens: MutableSet<String> = mutableSetOf()
+    private val startDestination: Screen,
+    private var backStackScreens: MutableSet<Screen> = mutableSetOf()
 ) {
-    // Variable to store the state of the current screen
-    var currentScreen: MutableState<String> = mutableStateOf(startDestination)
+    /**
+     * Переменная, хранящая состояние текущего экрана
+     */
+    var currentScreen = mutableStateOf(startDestination)
 
-    // Function to handle the navigation between the screen
-    fun navigate(route: String) {
+    /**
+     * Функция, реализующая перемещение к заданному экрану
+     */
+    fun navigate(route: Screen) {
         if (route != currentScreen.value) {
-            if (backStackScreens.contains(currentScreen.value) && currentScreen.value != startDestination) {
+            if (backStackScreens.contains(currentScreen.value) &&
+                currentScreen.value != startDestination) {
                 backStackScreens.remove(currentScreen.value)
             }
 
@@ -32,7 +38,9 @@ class NavController(
         }
     }
 
-    // Function to handle the back
+    /**
+     * Функция возвращения на предыдущий экран
+     */
     fun navigateBack() {
         if (backStackScreens.isNotEmpty()) {
             currentScreen.value = backStackScreens.last()
@@ -47,8 +55,8 @@ class NavController(
  */
 @Composable
 fun rememberNavController(
-    startDestination: String,
-    backStackScreens: MutableSet<String> = mutableSetOf()
+    startDestination: Screen,
+    backStackScreens: MutableSet<Screen> = mutableSetOf()
 ): MutableState<NavController> = rememberSaveable {
     mutableStateOf(NavController(startDestination, backStackScreens))
 }

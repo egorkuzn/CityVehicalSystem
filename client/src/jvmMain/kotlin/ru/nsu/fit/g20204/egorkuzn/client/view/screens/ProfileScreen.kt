@@ -19,12 +19,12 @@ fun ProfileScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(navController.currentScreen.value)
+        Text(navController.currentScreen.value.label)
         Button(
             onClick = {
-                navController.navigate(Screen.RepairsStatEngineer.name)
+                navController.navigate(Screen.MenuScreen)
             }) {
-            Text("Navigate to Notification")
+            Text("Navigate to HomeScreen")
         }
     }
 }
