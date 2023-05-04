@@ -9,11 +9,19 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import ru.nsu.fit.g20204.egorkuzn.client.controller.CityVehicleSystemApi
+import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import java.awt.Dimension
 import java.awt.Toolkit
 
 @ExperimentalMaterial3Api
 fun main() = application {
+    val apiImpl = RetrofitBuilder
+        .getInstance()
+        .create(CityVehicleSystemApi::class.java)
+
     Window(
         onCloseRequest = ::exitApplication,
         title = "CityVehicleSystem",

@@ -2,80 +2,81 @@ package ru.nsu.fit.g20204.egorkuzn.client.controller
 
 import retrofit2.http.GET
 import retrofit2.http.Query
+import ru.nsu.fit.g20204.egorkuzn.server.model.Dto.*
 
 interface CityVehicleSystemApi {
     @GET("cargo-volume-stat")
-    fun getCargoVolumeStat(
+    suspend fun getCargoVolumeStat(
         @Query("vehicleId") vehicleId: Long,
         @Query("dateFrom") dateFrom: String,
         @Query("dateTo") dateTo: String
-    ): List<>
+    ): List<CargoVolumeStatDto>
 
     @GET("drivers-to-car-distribution")
-    fun getDriversCarDistribution(): List<>
+    suspend fun getDriversCarDistribution(): List<DriversCarDistributionDto>
 
     @GET("garage-economy-info")
-    fun gatGarageEconomyInfo(): List<>
+    suspend fun gatGarageEconomyInfo(): List<GarageEconomyInfoDto>
 
     @GET("info_about_autopark")
-    fun getInfoAboutAutopark(): List<>
+    suspend fun getInfoAboutAutopark(): List<InfoAboutAutoparkDto>
 
     @GET("mileage_info")
-    fun getMileageInfo(
+    suspend fun getMileageInfo(
         @Query("paramType") paramType: String,
         @Query("param") param: String,
         @Query("periodType") periodType: String,
         @Query("day") day: String,
         @Query("month") month: String,
         @Query("year") year: String
-    ): List<>
+    ): List<MileageInfoDto>
 
     @GET("passangers_to_roats_distr")
-    fun getPassengerToRootsDistro(): List<>
+    suspend fun getPassengerToRootsDistro(): List<PassengersToRoutsDto>
 
     @GET("repairs_stat_transport")
-    fun getRepairsStatTransport(
+    suspend fun getRepairsStatTransport(
         @Query("paramType") paramType: String,
         @Query("param") param: String,
         @Query("fromDate") fromDate: String,
         @Query("toDate") toDate: String
-    ): List<>
+    ): List<RepairsStatTransportDto>
 
     @GET("repairs_stat_node")
-    fun getRepairsStatNode(
+    suspend fun getRepairsStatNode(
         @Query("paramType") paramType: String,
         @Query("param") param: String,
         @Query("fromDate") fromDate: String,
         @Query("toDate") toDate: String
-    ): List<>
+    ): List<RepairsStatNodeDto>
 
     @GET("repairs_stat_engineer")
-    fun getRepairsStatEngineer(
+    suspend fun getRepairsStatEngineer(
         @Query("vehicleId") vehicleId: Long,
         @Query("specialisation") specialisation: String,
         @Query("fromDate") fromDate: String,
         @Query("toDate") toDate: String
-    ): List<>
+    ): List<RepairsStatEngineerDto>
 
     @GET("vehicle_add_archive")
-    fun getVehicleAddArchive(
+    suspend fun getVehicleAddArchive(
         @Query("fromYear") fromYear: String,
         @Query("toYear") toYear: String
-    ): List<>
+    ): List<VehicleAddArchiveDto>
 
     @GET("vehicle_drivers_and_count")
-    fun getVehicleDriversAndCount(
+    suspend fun getVehicleDriversAndCount(
         @Query("vehicleId") vehicleId: Long
-    ): List<>
+    ): List<VehicleDriversAndCountDto>
 
     @GET("vehicle_to_company_distribution")
-    fun getVehicleToCompanyDistribution(): List<>
+    suspend fun getVehicleToCompanyDistribution(): List<VehicleToCompanyDistributionDto>
 
     @GET("workers_hierarchy_info_all")
-    fun getWorkersHierarchyInfo(): List<>
+    suspend fun getWorkersHierarchyInfo(): List<WorkersHierarchyInfoDto>
 
     @GET("workers_hierarchy_info_manager")
-    fun getWorkersHierarchyInfoManager(
+    suspend fun getWorkersHierarchyInfoManager(
         @Query("managerId") managerId: Long
-    ): List<>
+    ): List<WorkersHierarchyInfoManagerDto>
 }

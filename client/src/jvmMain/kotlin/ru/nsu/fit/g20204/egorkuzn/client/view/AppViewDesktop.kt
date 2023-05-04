@@ -30,7 +30,7 @@ fun AppViewDesktop() {
     val currentScreen by remember {
         navController.currentScreen
     }
-HashMap
+
     MaterialTheme {
         Surface(
             modifier = Modifier.background(color = MaterialTheme.colorScheme.background)
@@ -98,52 +98,85 @@ enum class Screen(
         lines = 1
     ),
     GarageEconomyInfo(
-        label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        lines = Icons.Filled.Notifications
+        label = """
+            Перечень и общее число водителей по
+            предприятию, по указанной автомашине.
+        """.trimMargin(),
+        lines = 2
     ),
     InfoAboutAutopark(
         label = "Данные об автопарке предприятия.",
-        lines = Icons.Filled.Home
+        lines = 1
     ),
     MileageInfo(
-        label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        lines = Icons.Filled.Notifications
+        label = """
+            Перечень и общее число водителей по
+            предприятию, по указанной автомашине.
+        """.trimIndent(),
+        lines = 2
     ),
     PassengersToRoutsDistr(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     RepairsStatEngineer(
-        label = "Перечень и общее число водителей по предприятию, по указанной автомашине.",
-        lines = Icons.Filled.Notifications
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     RepairsStatNode(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     RepairsStatTransport(
-        label = "Данные о распределении пассажирского автотранспорта по маршрутам.",
-        lines = Icons.Filled.Face
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     VehicleAddArchive(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     VehicleDriversAndCount(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     VehicleToCompanyDistr(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     WorkersHierarchyInfo(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     ),
     WorkersHirarchyInfoManager(
-        label = "Распределение водителей по автомобилям.",
-        lines = Icons.Filled.Settings
+        label = """
+            Cведения о грузоперевозках, выполненных указанной
+            автомашиной за обозначенный период.
+        """.trimIndent(),
+        lines = 2
     )
 }
 

@@ -1,6 +1,6 @@
-package ru.nsu.fit.g20204.egorkuzn.server.model.entity
+package ru.nsu.fit.g20204.egorkuzn.server.model.Dto
 
-data class GarageEconomyInfoEntity(
+data class GarageEconomyInfoDto(
     val garageEconomyId: Long,
     val garageAddress: String,
     val taxiCount: Int,
@@ -9,4 +9,4 @@ data class GarageEconomyInfoEntity(
     val shuttleCount: Int,
     val busCount: Int,
     val auxiliaryCount: Int
-): BaseEntity
+)

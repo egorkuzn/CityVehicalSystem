@@ -24,6 +24,7 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation("com.squareup.retrofit2:retrofit:2.9.0")
+                implementation("com.squareup.retrofit2:converter-gson:2.9.0")
                 implementation("org.jetbrains.compose.material3:material3-desktop:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
             }

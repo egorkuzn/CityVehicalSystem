@@ -1,9 +1,9 @@
-package ru.nsu.fit.g20204.egorkuzn.server.model.entity
+package ru.nsu.fit.g20204.egorkuzn.server.model.Dto
 
-data class VehicleDriversAndCountEntity(
+data class VehicleDriversAndCountDto(
     val workerId: Long,
     val firstname: String,
     val surname: String,
     val fathername: String,
     val driversCount: Int
-): BaseEntity
+)
