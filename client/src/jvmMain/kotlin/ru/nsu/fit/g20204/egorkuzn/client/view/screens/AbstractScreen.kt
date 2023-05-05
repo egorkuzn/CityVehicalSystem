@@ -66,6 +66,9 @@ abstract class AbstractScreen(
     }
 
     @Composable
+    abstract fun render(navController: NavController)
+
+    @Composable
     abstract fun content(navController: NavController)
 
     abstract fun onUpdate()

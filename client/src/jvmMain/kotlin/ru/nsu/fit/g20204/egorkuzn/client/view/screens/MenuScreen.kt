@@ -16,6 +16,9 @@ object MenuScreen : AbstractScreen(
     }
 
     @Composable
+    override fun render(navController: NavController) = render(MenuScreen, navController)
+
+    @Composable
     override fun content(navController: NavController) {
         toQueryScreenButton(navController)
         toEditorScreenButton(navController)

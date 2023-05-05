@@ -2,7 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller
 
 
 import androidx.compose.runtime.Composable
-import ru.nsu.fit.g20204.egorkuzn.client.view.screens.Screens
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.AbstractScreen
 
 /**
  * NavigationHost class
@@ -11,7 +11,6 @@ class NavigationHost(
     val navController: NavController,
     val contents: @Composable NavigationGraphBuilder.() -> Unit
 ) {
-
     @Composable
     fun build() {
         NavigationGraphBuilder().renderContents()
@@ -33,7 +32,7 @@ class NavigationHost(
  */
 @Composable
 fun NavigationHost.NavigationGraphBuilder.composable(
-    route: Screens,
+    route: AbstractScreen,
     content: @Composable () -> Unit
 ) {
     if (navController.currentScreen.value == route) {

@@ -14,8 +14,11 @@ object EditingMasterScreen: AbstractScreen(
         screensList.add(this)
     }
 
-    val head = mutableStateOf(ArrayList<String>())
-    val tableData = mutableStateOf(ArrayList<ArrayList<String>>())
+    private val head = mutableStateOf(ArrayList<String>())
+    private val tableData = mutableStateOf(ArrayList<ArrayList<String>>())
+
+    @Composable
+    override fun render(navController: NavController) = render(MenuScreen, navController)
 
     @Composable
     override fun content(navController: NavController) {

@@ -23,16 +23,16 @@ object QueryViewerScreen : AbstractScreen(
         screensList.add(this)
     }
 
+    @Composable
+    override fun render(navController: NavController) = render(MenuScreen, navController)
+
+    private var expanded by mutableStateOf(true)
+    private val suggestions = listOf("Item1", "Item2", "Item3")
+    private var selectedText by mutableStateOf("")
+    private var textFieldSize by mutableStateOf(Size.Zero)
 
     @Composable
     override fun content(navController: NavController) {
-        var expanded by remember { mutableStateOf(true) }
-        val suggestions = listOf("Item1", "Item2", "Item3")
-        var selectedText by remember { mutableStateOf("") }
-
-        var textfieldSize by remember { mutableStateOf(Size.Zero) }
-
-
         Box() {
             OutlinedTextField(
                 value = selectedText,
@@ -45,7 +45,7 @@ object QueryViewerScreen : AbstractScreen(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
-                    .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
+                    .width(with(LocalDensity.current) { textFieldSize.width.toDp() })
             ) {
                 suggestions.forEach { label ->
                     DropdownMenuItem(onClick = {
