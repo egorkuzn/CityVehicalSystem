@@ -48,15 +48,3 @@ class NavController(
         }
     }
 }
-
-
-/**
- * Composable to remember the state of the navcontroller
- */
-@Composable
-fun rememberNavController(
-    startDestination: AbstractScreen,
-    backStackScreens: MutableSet<AbstractScreen> = mutableSetOf()
-): MutableState<NavController> = rememberSaveable {
-    mutableStateOf(NavController(startDestination, backStackScreens))
-}
