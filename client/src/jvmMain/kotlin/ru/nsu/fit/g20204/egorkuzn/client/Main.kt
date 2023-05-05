@@ -1,6 +1,6 @@
 package ru.nsu.fit.g20204.egorkuzn.client
 
-import AppViewDesktop
+import ru.nsu.fit.g20204.egorkuzn.client.view.AppViewDesktop
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
