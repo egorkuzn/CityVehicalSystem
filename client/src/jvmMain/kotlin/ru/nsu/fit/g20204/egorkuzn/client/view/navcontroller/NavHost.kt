@@ -2,7 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller
 
 
 import androidx.compose.runtime.Composable
-import ru.nsu.fit.g20204.egorkuzn.client.view.screens.Screen
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.Screens
 
 /**
  * NavigationHost class
@@ -33,7 +33,7 @@ class NavigationHost(
  */
 @Composable
 fun NavigationHost.NavigationGraphBuilder.composable(
-    route: Screen,
+    route: Screens,
     content: @Composable () -> Unit
 ) {
     if (navController.currentScreen.value == route) {

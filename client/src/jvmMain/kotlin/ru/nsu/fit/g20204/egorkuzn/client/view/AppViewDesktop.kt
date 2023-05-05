@@ -22,13 +22,13 @@ object AppViewDesktop {
         /**
          * Имеются некоторые экраны, между которыми мы переключаемся
          */
-        val screens = Screen.values().toList()
+        val screens = Screens.values().toList()
 
         /**
          * Здесь задается начальное значение контроллера, который занимается навигацией.
          * Начальный экран - это меню, в котором происходит выбор таблицы.
          */
-        val navController by rememberNavController(Screen.MenuScreen)
+        val navController by rememberNavController(Screens.MenuScreen)
         val currentScreen by remember {
             navController.currentScreen
         }
@@ -77,29 +77,22 @@ object AppViewDesktop {
     /**
      * Screens
      */
-
-
     @Composable
     fun CustomNavigationHost(
         navController: NavController
     ) {
         NavigationHost(navController) {
-            composable(Screen.MenuScreen) {
-                MenuScreen.render(Screen.ProfileScreens, navController)
+            composable(Screens.MenuScreen) {
+                MenuScreen.render(Screens.MenuScreen, navController)
             }
 
-            composable(Screen.NotificationsScreen) {
-                NotificationScreen(navController)
+            composable(Screens.QueryViewer) {
+                QueryViewerScreen.render(Screens.MenuScreen, navController)
             }
 
-            composable(Screen.SettingsScreen) {
-                SettingScreen(navController)
+            composable(Screens.EditingMaster) {
+                EditingMasterScreen.render(Screens.MenuScreen, navController)
             }
-
-            composable(Screen.ProfileScreens) {
-                ProfileScreen(navController)
-            }
-
         }.build()
     }
 }
