@@ -8,15 +8,14 @@ import androidx.compose.runtime.Composable
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
 
 object MenuScreen : AbstractScreen(
-    label = "Меню",
-    icon = Icons.Filled.Menu
+    label = "Меню"
 ) {
     init {
         screensList.add(this)
     }
 
     @Composable
-    override fun render(navController: NavController) = render(MenuScreen, navController)
+    override fun render() = render(MenuScreen)
 
     @Composable
     override fun content(navController: NavController) {

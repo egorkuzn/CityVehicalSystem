@@ -7,8 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
 
 object EditingMasterScreen: AbstractScreen(
-    "Редактирование данных",
-    Icons.Filled.Add
+    "Редактирование данных"
 ) {
     init {
         screensList.add(this)
@@ -18,7 +17,7 @@ object EditingMasterScreen: AbstractScreen(
     private val tableData = mutableStateOf(ArrayList<ArrayList<String>>())
 
     @Composable
-    override fun render(navController: NavController) = render(MenuScreen, navController)
+    override fun render() = render(MenuScreen)
 
     @Composable
     override fun content(navController: NavController) {

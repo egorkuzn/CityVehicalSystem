@@ -1,18 +1,16 @@
 package ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.AbstractScreen
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.MenuScreen
 
 /**
  * Класс навигации
  */
-class NavController(
-    private val startDestination: AbstractScreen,
+object NavController {
+    private val startDestination: AbstractScreen = MenuScreen
     private var backStackScreens: MutableSet<AbstractScreen> = mutableSetOf()
-) {
+
     /**
      * Переменная, хранящая состояние текущего экрана
      */
@@ -24,7 +22,8 @@ class NavController(
     fun navigate(route: AbstractScreen) {
         if (route::class != currentScreen::class) {
             if (backStackScreens.contains(currentScreen.value) &&
-                currentScreen.value != startDestination) {
+                currentScreen.value != startDestination
+            ) {
                 backStackScreens.remove(currentScreen.value)
             }
 

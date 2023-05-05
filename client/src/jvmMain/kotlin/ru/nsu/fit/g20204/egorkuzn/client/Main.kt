@@ -21,10 +21,6 @@ class SizeWindows {
 
 @ExperimentalMaterial3Api
 fun main() = application {
-    val apiImpl = RetrofitBuilder
-        .getInstance()
-        .create(CityVehicleSystemApi::class.java)
-
     Window(
         onCloseRequest = ::exitApplication,
         title = "CityVehicleSystem",

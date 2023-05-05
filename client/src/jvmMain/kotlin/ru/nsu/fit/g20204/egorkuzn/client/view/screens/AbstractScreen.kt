@@ -8,37 +8,33 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
 
 /**
  * Базовый класс для экрана, используемого в навигации
  */
 abstract class AbstractScreen(
-    val label: String,
-    val icon: ImageVector
+    val label: String
 ) {
     /**
      * Функция отрисовки экрана навигации.
      *
      * @param screen - Принимает название экрана, на который собираемся переключиться
-     * @param navController - Контроллер, который занимается навигацией
      */
     @Composable
     fun render(
-        screen: AbstractScreen,
-        navController: NavController
+        screen: AbstractScreen
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement =  Arrangement.Top,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (!(this@AbstractScreen is MenuScreen)) {
+            if (this@AbstractScreen !== MenuScreen) {
                 Button(
                     onClick = {
                         onUpdate()
-                        navController.navigate(screen)
+                        NavController.navigate(screen)
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
@@ -47,13 +43,13 @@ abstract class AbstractScreen(
             }
 
             Text(
-                text = navController
-                .currentScreen
-                .value
-                .toString()
+                text = NavController
+                    .currentScreen
+                    .value
+                    .toString()
             )
 
-            content(navController)
+            content(NavController)
         }
     }
 
@@ -66,7 +62,7 @@ abstract class AbstractScreen(
     }
 
     @Composable
-    abstract fun render(navController: NavController)
+    abstract fun render()
 
     @Composable
     abstract fun content(navController: NavController)

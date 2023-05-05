@@ -20,8 +20,7 @@ object AppViewDesktop {
      * Здесь задается начальное значение контроллера, который занимается навигацией.
      * Начальный экран - это меню, в котором происходит выбор таблицы.
      */
-    private val navController by mutableStateOf(NavController(MenuScreen, mutableSetOf()))
-    private val currentScreen by navController.currentScreen
+    private val currentScreen by NavController.currentScreen
 
     @Composable
     @Preview
@@ -36,7 +35,7 @@ object AppViewDesktop {
                     Box(
                         modifier = Modifier.fillMaxHeight()
                     ) {
-                        currentScreen.render(navController)
+                        currentScreen.render()
                     }
                 }
             }

@@ -11,4 +11,7 @@ object RetrofitBuilder {
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+    fun apiImpl() = getInstance()
+        .create(CityVehicleSystemApi::class.java)
 }
