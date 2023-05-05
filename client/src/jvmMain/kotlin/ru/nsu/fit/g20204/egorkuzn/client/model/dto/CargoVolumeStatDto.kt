@@ -4,7 +4,7 @@ import java.sql.Date
 
 data class CargoVolumeStatDto (
     val vehicle_id: Long,
-    val trip_date: Date,
+    val trip_date: String,
     val cargo_volume: Short,
     val distance: Short
 )

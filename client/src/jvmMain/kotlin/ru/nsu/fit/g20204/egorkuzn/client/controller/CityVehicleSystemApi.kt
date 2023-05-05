@@ -3,13 +3,14 @@ package ru.nsu.fit.g20204.egorkuzn.client.controller
 import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.nsu.fit.g20204.egorkuzn.server.model.Dto.*
+import java.sql.Date
 
 interface CityVehicleSystemApi {
     @GET("cargo-volume-stat")
     suspend fun getCargoVolumeStat(
         @Query("vehicleId") vehicleId: Long,
-        @Query("dateFrom") dateFrom: String,
-        @Query("dateTo") dateTo: String
+        @Query("dateFrom") dateFrom: Date,
+        @Query("dateTo") dateTo: Date
     ): List<CargoVolumeStatDto>
 
     @GET("drivers-to-car-distribution")
