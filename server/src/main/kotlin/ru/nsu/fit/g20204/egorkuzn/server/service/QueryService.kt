@@ -2,7 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.server.service
 
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.CargoVolumeStatEntity
 
-interface ClientService {
+interface QueryService {
     fun getCargoVolumeStat(vehicleId: Long, dateFrom: String, dateTo: String): List<CargoVolumeStatEntity>
     fun getDriversCarDistribution(): Any
     fun getGarageEconomyInfo(): Any
