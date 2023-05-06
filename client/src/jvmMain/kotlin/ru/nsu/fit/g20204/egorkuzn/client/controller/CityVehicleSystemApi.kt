@@ -9,8 +9,8 @@ interface CityVehicleSystemApi {
     @GET("cargo-volume-stat")
     suspend fun getCargoVolumeStat(
         @Query("vehicleId") vehicleId: Long,
-        @Query("dateFrom") dateFrom: Date,
-        @Query("dateTo") dateTo: Date
+        @Query("dateFrom") dateFrom: String,
+        @Query("dateTo") dateTo: String
     ): List<CargoVolumeStatDto>
 
     @GET("drivers-to-car-distribution")
