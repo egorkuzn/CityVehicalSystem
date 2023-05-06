@@ -1,16 +1,18 @@
 package ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer
 
 import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.view.field.DateField
-import ru.nsu.fit.g20204.egorkuzn.client.view.field.LongField
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.map.TruckToIdDto
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.DateField
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.DropdownTruckMenu
 
 object CargoVolumeStatQuery : AbstractQueryScreen(
     description = "Получение информации о грузоперевозках"
 ) {
+
     override fun getHead() = listOf(
-        "Индентификатор транспорта",
         "Дата поездки",
         "Объем перевозимого груза",
         "Дистанция"
@@ -19,8 +21,18 @@ object CargoVolumeStatQuery : AbstractQueryScreen(
     private var vehicleId = mutableStateOf(1L)
     private var dateFrom = mutableStateOf("2000-01-01")
     private var dateTo = mutableStateOf("2024-01-01")
+    private var mapper: List<TruckToIdDto> = emptyList()
+    private var isFirstTime = true
+    private var dateFromField = DateField()
+    private var dateToField = DateField()
 
     override fun getData() = runBlocking {
+        if (isFirstTime) launch {
+            mapper = RetrofitBuilder
+                .apiImpl()
+                .getTruckToVehicleId()
+        }
+
         RetrofitBuilder
             .apiImpl()
             .getCargoVolumeStat(
@@ -36,11 +48,15 @@ object CargoVolumeStatQuery : AbstractQueryScreen(
             }.toList()
     }
 
+    init {
+        getData()
+        isFirstTime = false
+    }
 
     @Composable
     override fun inputContent() {
-        LongField.render(mapvehicleId)
-        DateField.render()
-        DateField.render()
+        DropdownTruckMenu.render(mapper, vehicleId)
+        dateFromField.render(dateFrom)
+        dateToField.render(dateTo)
     }
 }

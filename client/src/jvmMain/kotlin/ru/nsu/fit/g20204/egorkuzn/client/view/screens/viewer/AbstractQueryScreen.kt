@@ -1,6 +1,6 @@
 package ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.AbstractScreen
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.QueryViewerScreen
@@ -10,7 +10,6 @@ abstract class AbstractQueryScreen(val description: String): AbstractScreen(desc
     companion object {
         val listOfQueries = listOf<AbstractQueryScreen>(CargoVolumeStatQuery)
     }
-
 
     @Composable
     override fun content(navController: NavController) {

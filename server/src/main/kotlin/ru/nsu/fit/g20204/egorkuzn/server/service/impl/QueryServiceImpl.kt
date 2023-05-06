@@ -2,7 +2,7 @@ package ru.nsu.fit.g20204.egorkuzn.server.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.nsu.fit.g20204.egorkuzn.server.dao.*
+import ru.nsu.fit.g20204.egorkuzn.server.dao.query.*
 import ru.nsu.fit.g20204.egorkuzn.server.service.QueryService
 
 @Service
