@@ -37,7 +37,6 @@ abstract class AbstractScreen(
             if (this@AbstractScreen !== MenuScreen) {
                 Button(
                     onClick = {
-                        onUpdate()
                         NavController.navigate(screen)
                     },
                     modifier = Modifier.align(Alignment.End)

@@ -29,7 +29,7 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
     private var isFirstTime = true
     private var dateFromField = DateField("Начало периода: ")
     private var dateToField = DateField("Конец периода: ")
-    private val dropdownMenu = GenericDropdownMenu<String, Long>()
+    private val dropdownMenu = GenericDropdownMenu<Long>()
 
     override fun getData() = runBlocking {
         if (isFirstTime) launch {
@@ -53,7 +53,7 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
                     it.cargo_volume.toString(),
                     it.distance.toString()
                 )
-            }.toList()
+            }
     }
 
     init {

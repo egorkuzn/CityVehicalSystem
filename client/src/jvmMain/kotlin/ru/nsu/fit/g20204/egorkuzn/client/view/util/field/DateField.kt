@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.GenericDropdownMenu
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.DropdownMonthMenu
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
@@ -16,7 +16,7 @@ import java.time.format.ResolverStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 class DateField(val dateDescription: String) {
-    private val monthMenu = GenericDropdownMenu<String, String>()
+    private val monthMenu = DropdownMonthMenu()
     private val formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd")
         .withResolverStyle(ResolverStyle.STRICT)
 
@@ -88,8 +88,7 @@ class DateField(val dateDescription: String) {
                 Pair("Ноябрь", "11"),
                 Pair("Декабрь", "12")
             ),
-            date,
-            "Месяц"
+            date
         )
     }
 

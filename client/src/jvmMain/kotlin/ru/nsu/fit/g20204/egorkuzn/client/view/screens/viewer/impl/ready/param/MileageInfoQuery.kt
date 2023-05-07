@@ -16,30 +16,19 @@ object MileageInfoQuery : AbstractParamQueryScreen(
     @Composable
     override fun inputContent() {
         Column {
-            val coroutineScope = rememberCoroutineScope()
             MileageParamInputer.paramTypeChooser(paramType)
-
-            LaunchedEffect(vehicleMap.isEmpty()) {
-                coroutineScope.launch {
-                    vehicleMap = RetrofitBuilder
-                        .apiImpl()
-                        .getInfoAboutAutopark()
-                        .map {
-                            Pair(it.modelName, it.modelName.substring(it.modelName.indexOf("|") + 1))
-                        }
-                }
-            }
-
             MileageParamInputer.paramInputer(param, paramType)
+            MileageParamInputer.periodTypeChooser(periodType)
+            MileageParamInputer.periodInputer(periodType, year, month, day)
         }
     }
 
-    private val paramType = mutableStateOf("")
-    private val param = mutableStateOf("")
-    private val periodType = mutableStateOf("")
-    private val day = mutableStateOf("")
-    private val month = mutableStateOf("")
-    private val year = mutableStateOf("")
+    private val paramType = mutableStateOf("0")
+    private val param = mutableStateOf("0")
+    private val periodType = mutableStateOf("0")
+    private val day = mutableStateOf("0")
+    private val month = mutableStateOf("0")
+    private val year = mutableStateOf("0")
 
     override fun getHead() = listOf(
         "Транспорт",
@@ -47,6 +36,15 @@ object MileageInfoQuery : AbstractParamQueryScreen(
     )
 
     override fun getData() = runBlocking {
+        launch {
+            vehicleMap = RetrofitBuilder
+                .apiImpl()
+                .getInfoAboutAutopark()
+                .map {
+                    Pair(it.modelName, it.modelName.substring(it.modelName.indexOf("|") + 1))
+                }
+        }
+
         RetrofitBuilder
             .apiImpl()
             .getMileageInfo(
