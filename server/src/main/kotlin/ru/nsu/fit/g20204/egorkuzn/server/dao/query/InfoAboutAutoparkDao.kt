@@ -11,14 +11,14 @@ import java.sql.ResultSet
 class InfoAboutAutoparkDao(@Autowired jdbcConfig: JdbcConfig) : BaseDao<InfoAboutAutoparkEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         InfoAboutAutoparkEntity(
-            getLong("vehicle_id"),
             getString("Model name")
         )
     }
 
     fun runQuery() = sqlRun(
         """
-            select distinct V.vehicle_id,
+            select distinct V.vehicle_id, 
+            V.vehicle_id::text || '|' ||
                 case when V.vehicle_id = VSM.vehicle_id then SM.model_name
                     when V.vehicle_id = VAM.vehicle_id then AM.model_name
                     when V.vehicle_id = VCM.vehicle_id then CM.model_name

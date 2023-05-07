@@ -6,6 +6,7 @@ import ru.nsu.fit.g20204.egorkuzn.client.view.screens.AbstractScreen
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.QueryViewerScreen
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.impl.ready.noparam.DriversCarDistributionQuery
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.impl.ready.noparam.GarageEconomyInfoQuery
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.impl.ready.noparam.InfoAboutAutoparkQuery
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.impl.ready.param.CargoVolumeStatQuery
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -14,7 +15,8 @@ abstract class AbstractQueryScreen(val description: String): AbstractScreen(desc
         val listOfQueries = listOf(
             CargoVolumeStatQuery,
             DriversCarDistributionQuery,
-            GarageEconomyInfoQuery
+            GarageEconomyInfoQuery,
+            InfoAboutAutoparkQuery
         )
     }
 
