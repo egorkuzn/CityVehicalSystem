@@ -8,6 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
 
 /**
@@ -46,7 +50,9 @@ abstract class AbstractScreen(
                 text = NavController
                     .currentScreen
                     .value
-                    .toString()
+                    .toString(),
+                style = TextStyle(fontWeight = FontWeight.ExtraBold),
+                fontSize = 30.sp
             )
 
             content(NavController)

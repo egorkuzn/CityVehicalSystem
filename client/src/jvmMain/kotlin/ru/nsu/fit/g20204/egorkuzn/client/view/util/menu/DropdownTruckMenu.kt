@@ -34,21 +34,21 @@ object DropdownTruckMenu {
         val icon = if (mExpanded) Icons.Filled.KeyboardArrowUp
         else Icons.Filled.KeyboardArrowDown
 
+        mSelectedText = mapper.firstOrNull { it.vehicleId == vehicleId.value }?.modelName ?: ""
+
         Column(Modifier.padding(20.dp)) {
             OutlinedTextField(value = mSelectedText,
                 onValueChange = { mSelectedText = it },
-                modifier = Modifier.fillMaxWidth().onGloballyPositioned { coordinates ->
-                    mTextFieldSize = coordinates.size.toSize()
-                },
                 label = { Text("Транспорт") },
                 trailingIcon = {
                     Icon(icon, "contentDescription", Modifier.clickable { mExpanded = !mExpanded })
-                })
+                },
+                readOnly = true
+            )
 
             DropdownMenu(
                 expanded = mExpanded,
-                onDismissRequest = { mExpanded = false },
-                modifier = Modifier.width(with(LocalDensity.current) { mTextFieldSize.width.toDp() })
+                onDismissRequest = { mExpanded = false }
             ) {
                 mapper.forEach {
                     DropdownMenuItem(onClick = {

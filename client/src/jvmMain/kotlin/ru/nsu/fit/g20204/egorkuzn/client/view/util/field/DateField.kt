@@ -1,13 +1,10 @@
 package ru.nsu.fit.g20204.egorkuzn.client.view.util.field
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.TextField
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -17,7 +14,8 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.time.format.ResolverStyle
 
-class DateField {
+@OptIn(ExperimentalMaterial3Api::class)
+class DateField(val dateDescription: String) {
     private val monthMenu = DropdownMonthMenu()
     private val formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd")
         .withResolverStyle(ResolverStyle.STRICT)
@@ -34,13 +32,12 @@ class DateField {
     }
 
 
-
     @Composable
     private fun yearIntField(date: MutableState<String>) {
         var error by remember { mutableStateOf(false) }
         var newYearState by remember { mutableStateOf(date.value.substring(0, 4)) }
 
-        TextField(
+        OutlinedTextField(
             value = newYearState,
             isError = error,
             onValueChange = { newValue ->
@@ -69,7 +66,8 @@ class DateField {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Decimal
             ),
-            modifier = Modifier.width(100.dp).padding(horizontal = 0.dp, vertical = 8.dp)
+            modifier = Modifier.width(100.dp),
+            label = { Text(this.dateDescription) }
         )
     }
 
@@ -99,7 +97,7 @@ class DateField {
         var error by remember { mutableStateOf(false) }
         var newDayState by remember { mutableStateOf(date.value.substring(8)) }
 
-        TextField(
+        OutlinedTextField(
             value = newDayState,
             isError = error,
             onValueChange = { newValue ->
@@ -130,7 +128,8 @@ class DateField {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Decimal
             ),
-            modifier = Modifier.width(60.dp).padding(horizontal = 0.dp, vertical = 8.dp)
+            modifier = Modifier.width(80.dp),
+            label = { Text("День") }
         )
     }
 }

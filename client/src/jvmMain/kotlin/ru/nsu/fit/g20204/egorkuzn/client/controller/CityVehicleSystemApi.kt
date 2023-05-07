@@ -17,7 +17,7 @@ interface CityVehicleSystemApi {
     suspend fun getDriversCarDistribution(): List<DriversCarDistributionDto>
 
     @GET("garage-economy-info")
-    suspend fun gatGarageEconomyInfo(): List<GarageEconomyInfoDto>
+    suspend fun getGarageEconomyInfo(): List<GarageEconomyInfoDto>
 
     @GET("info_about_autopark")
     suspend fun getInfoAboutAutopark(): List<InfoAboutAutoparkDto>

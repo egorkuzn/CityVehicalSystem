@@ -18,6 +18,9 @@ class DropdownMonthMenu {
     // Create a string value to store the selected city
     private var mSelectedText by mutableStateOf("")
 
+
+
+
     @Composable
     fun render(
         mapper: List<Pair<String, String>>, vehicleId: MutableState<String>
@@ -25,6 +28,8 @@ class DropdownMonthMenu {
         // Up Icon when expanded and down icon when collapsed
         val icon = if (mExpanded) Icons.Filled.KeyboardArrowUp
         else Icons.Filled.KeyboardArrowDown
+
+        mSelectedText = mapper.firstOrNull { it.second == vehicleId.value.substring(5, 7) }?.first ?: ""
 
         Column(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 0.dp)
