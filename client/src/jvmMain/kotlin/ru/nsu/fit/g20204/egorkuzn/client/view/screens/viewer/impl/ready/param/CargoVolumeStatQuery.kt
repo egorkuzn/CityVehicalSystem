@@ -10,7 +10,7 @@ import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.map.TruckToIdDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.AbstractParamQueryScreen
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.DateField
-import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.DropdownTruckMenu
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.GenericDropdownMenu
 
 object CargoVolumeStatQuery : AbstractParamQueryScreen(
     description = "Получение информации о грузоперевозках"
@@ -25,16 +25,20 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
     private var vehicleId = mutableStateOf(0L)
     private var dateFrom = mutableStateOf("2000-01-01")
     private var dateTo = mutableStateOf("2024-01-01")
-    private var mapper: List<TruckToIdDto> = emptyList()
+    private var mapper: List<Pair<String, Long>> = emptyList()
     private var isFirstTime = true
     private var dateFromField = DateField("Начало периода: ")
     private var dateToField = DateField("Конец периода: ")
+    private val dropdownMenu = GenericDropdownMenu<String, Long>()
 
     override fun getData() = runBlocking {
         if (isFirstTime) launch {
             mapper = RetrofitBuilder
                 .apiImpl()
                 .getTruckToVehicleId()
+                .map {
+                    Pair(it.modelName, it.vehicleId)
+                }
         }
 
         RetrofitBuilder
@@ -62,7 +66,7 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            DropdownTruckMenu.render(mapper, vehicleId)
+            dropdownMenu.render(mapper, vehicleId, "Грузовик")
             dateFromField.render(dateFrom)
             dateToField.render(dateTo)
         }

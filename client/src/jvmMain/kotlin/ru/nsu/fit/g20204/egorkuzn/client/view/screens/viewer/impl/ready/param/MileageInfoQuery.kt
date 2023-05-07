@@ -1,7 +1,8 @@
 package ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.impl.ready.param
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.AbstractParamQueryScreen
@@ -10,10 +11,27 @@ import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.MileageParamInputer
 object MileageInfoQuery : AbstractParamQueryScreen(
     description = "Получение информации о пробеге"
 ) {
+    var vehicleMap: List<Pair<String, String>> by mutableStateOf(emptyList())
+
     @Composable
     override fun inputContent() {
-        MileageParamInputer.paramTypeChooser(paramType)
-        MileageParamInputer.paramInputer(param, paramType)
+        Column {
+            val coroutineScope = rememberCoroutineScope()
+            MileageParamInputer.paramTypeChooser(paramType)
+
+            LaunchedEffect(vehicleMap.isEmpty()) {
+                coroutineScope.launch {
+                    vehicleMap = RetrofitBuilder
+                        .apiImpl()
+                        .getInfoAboutAutopark()
+                        .map {
+                            Pair(it.modelName, it.modelName.substring(it.modelName.indexOf("|") + 1))
+                        }
+                }
+            }
+
+            MileageParamInputer.paramInputer(param, paramType)
+        }
     }
 
     private val paramType = mutableStateOf("")

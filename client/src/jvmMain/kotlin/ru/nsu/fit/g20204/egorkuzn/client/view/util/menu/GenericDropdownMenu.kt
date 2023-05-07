@@ -13,34 +13,28 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
-object DropdownCategoryMenu {
+class GenericDropdownMenu<T, K> {
     private var mExpanded by mutableStateOf(false)
     // Create a string value to store the selected city
     private var mSelectedText by mutableStateOf("")
 
     private var mTextFieldSize by mutableStateOf(Size.Zero)
 
-    private val mapper = listOf(
-        Pair("Такси", "Taxi"),
-        Pair("Грузовик", "Truck"),
-        Pair("Авто", "Car"),
-        Pair("Маршрутка", "Shuttle"),
-        Pair("Спец транспорт", "Auxiliary"),
-        Pair("Автобус", "Bus")
-    )
-    
     @Composable
-    fun render(param: MutableState<String>) {
+    fun render(
+        mapper: List<Pair<T, K>>, param: MutableState<K>,
+        label: String
+    ) {
         // Up Icon when expanded and down icon when collapsed
         val icon = if (mExpanded) Icons.Filled.KeyboardArrowUp
         else Icons.Filled.KeyboardArrowDown
 
-        mSelectedText = mapper.firstOrNull { it.second == param.value }?.first ?: ""
+        mSelectedText = mapper.firstOrNull { it.second == param.value }?.first.toString() ?: ""
 
         Column(Modifier.padding(20.dp)) {
             OutlinedTextField(value = mSelectedText,
                 onValueChange = { mSelectedText = it },
-                label = { Text("Категория") },
+                label = { Text(label) },
                 trailingIcon = {
                     Icon(icon, "contentDescription", Modifier.clickable { mExpanded = !mExpanded })
                 },
@@ -53,15 +47,14 @@ object DropdownCategoryMenu {
             ) {
                 mapper.forEach {
                     DropdownMenuItem(onClick = {
-                        mSelectedText = it.first
+                        mSelectedText = it.first.toString()
                         mExpanded = false
                         param.value = it.second
                     }, text = {
-                        Text(text = it.first)
+                        Text(text = it.first.toString())
                     })
                 }
             }
         }
-    }   
-    
+    }
 }
