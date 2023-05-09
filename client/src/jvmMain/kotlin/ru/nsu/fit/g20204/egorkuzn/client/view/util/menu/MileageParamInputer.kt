@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.time.format.ResolverStyle
 
-// "день" "месяц" "год"
 object MileageParamInputer {
     private val formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd")
         .withResolverStyle(ResolverStyle.STRICT)

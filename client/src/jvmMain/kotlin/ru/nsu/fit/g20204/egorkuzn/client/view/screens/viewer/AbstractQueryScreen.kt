@@ -27,7 +27,8 @@ abstract class AbstractQueryScreen(val description: String) : AbstractScreen(des
             InfoAboutAutoparkQuery,
             MileageInfoQuery,
             PassengersToRoutsQuery,
-            VehicleToCompanyDistributionQuery
+            VehicleToCompanyDistributionQuery,
+            WorkersHierarchyInfoQuery
         )
     }
 
