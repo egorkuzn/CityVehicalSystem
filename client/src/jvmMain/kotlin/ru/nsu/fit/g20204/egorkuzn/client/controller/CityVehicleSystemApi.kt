@@ -27,13 +27,13 @@ interface CityVehicleSystemApi {
         @Query("paramType") paramType: String,
         @Query("param") param: String,
         @Query("periodType") periodType: String,
-        @Query("day") day: String,
-        @Query("month") month: String,
-        @Query("year") year: String
+        @Query("day") day: Int,
+        @Query("month") month: Int,
+        @Query("year") year: Int
     ): List<MileageInfoDto>
 
     @GET("passangers_to_roats_distr")
-    suspend fun getPassengerToRootsDistro(): List<PassengersToRoutsDto>
+    suspend fun getPassengerToRoutsDistro(): List<PassengersToRoutsDto>
 
     @GET("repairs_stat_transport")
     suspend fun getRepairsStatTransport(

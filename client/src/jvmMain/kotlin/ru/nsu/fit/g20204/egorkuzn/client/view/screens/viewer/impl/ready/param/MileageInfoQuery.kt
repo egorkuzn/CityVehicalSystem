@@ -26,9 +26,9 @@ object MileageInfoQuery : AbstractParamQueryScreen(
     private val paramType = mutableStateOf("0")
     private val param = mutableStateOf("0")
     private val periodType = mutableStateOf("0")
-    private val day = mutableStateOf("0")
-    private val month = mutableStateOf("0")
-    private val year = mutableStateOf("0")
+    private val day = mutableStateOf(0)
+    private val month = mutableStateOf(0)
+    private val year = mutableStateOf(0)
 
     override fun getHead() = listOf(
         "Транспорт",
@@ -41,7 +41,7 @@ object MileageInfoQuery : AbstractParamQueryScreen(
                 .apiImpl()
                 .getInfoAboutAutopark()
                 .map {
-                    Pair(it.modelName, it.modelName.substring(it.modelName.indexOf("|") + 1))
+                    Pair(it.modelName, it.modelName.substring(0, it.modelName.indexOf("|")))
                 }
         }
 
@@ -54,10 +54,10 @@ object MileageInfoQuery : AbstractParamQueryScreen(
                 day.value,
                 month.value,
                 year.value
-            ).map {
+            ).map { elem ->
                 listOf(
-                    it.vehicleId.toString(),
-                    it.mileage.toString()
+                    vehicleMap.first { it.second == elem.vehicleId.toString()}.first,
+                    elem.mileage.toString()
                 )
             }
     }
