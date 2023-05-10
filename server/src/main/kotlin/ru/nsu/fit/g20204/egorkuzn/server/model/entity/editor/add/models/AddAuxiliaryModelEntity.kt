@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add
+package ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models
 
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.SqlInsertable
 

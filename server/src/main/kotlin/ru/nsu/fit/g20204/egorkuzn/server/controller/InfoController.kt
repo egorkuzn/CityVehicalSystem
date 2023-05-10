@@ -13,10 +13,26 @@ import ru.nsu.fit.g20204.egorkuzn.server.service.InfoService
 @RequestMapping("api/v1/city-vehicle-system/info/")
 class InfoController(@Autowired val controllerService: InfoService) {
     @Operation(summary = "Получение карты по грузовому транспорту <{Название модели}_{номер}>:<{vehicle_id}>")
-    @GetMapping("model/truck")
+    @GetMapping("model/truck-vehicle")
     fun getTruckToId() = controllerService.getTruckToId()
 
-    @Operation(summary = "Получение карты по грузовому транспорту <{Название модели}_{номер}>:<{vehicle_id}>")
+    @Operation(summary = "Получение моделей специального транспорта")
     @GetMapping("model/auxiliary")
     fun getAuxiliary() = controllerService.getAuxiliaryModel()
+
+    @Operation(summary = "Получение моделей автобусов")
+    @GetMapping("model/bus")
+    fun getBus() = controllerService.getBusModel()
+
+    @Operation(summary = "Получение моделей авто")
+    @GetMapping("model/auxilicarary")
+    fun getAuto() = controllerService.getAutoModel()
+
+    @Operation(summary = "Получение моделей маршрутного такси")
+    @GetMapping("model/shuttle")
+    fun getShuttle() = controllerService.getShuttleModel()
+
+    @Operation(summary = "Получение моделей грузовиков")
+    @GetMapping("model/truck")
+    fun getTruck() = controllerService.getTruckModel()
 }

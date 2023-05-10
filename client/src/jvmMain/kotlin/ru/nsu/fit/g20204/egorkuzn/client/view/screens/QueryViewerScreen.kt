@@ -44,7 +44,7 @@ object QueryViewerScreen : AbstractScreen(
                     ) {
                         Text(
                             text = it.description,
-                            textAlign = TextAlign.Left
+                            textAlign = TextAlign.Center
                         )
                     }
                 }

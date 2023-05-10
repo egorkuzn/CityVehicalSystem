@@ -5,18 +5,18 @@ import ru.nsu.fit.g20204.egorkuzn.server.model.entity.SqlInsertable
 import java.sql.SQLException
 import java.sql.Statement
 
-abstract class AbstractUpdateRunner<T : SqlInsertable>(
+abstract class AbstractOneTableInsertRunner<T : SqlInsertable>(
     jdbcConfig: JdbcConfig
-) : BaseDao(jdbcConfig) {
+): BaseDao(jdbcConfig) {
     abstract val tableName: String
 
     fun sqlRun(
-        valuesList: List<T>
+        value: T
     ): Boolean {
         val statement: Statement = connection.createStatement() ?: return false
         val updateRequest = """
                     insert into "$tableName"
-                    values ${values(valuesList)}              
+                    values ${value.toSqlValue()}              
                 """.trimIndent()
 
         try {
@@ -28,15 +28,5 @@ abstract class AbstractUpdateRunner<T : SqlInsertable>(
         }
 
         return true
-    }
-
-    private fun values(valuesList: List<T>): String {
-        var res = ""
-
-        valuesList.forEach {
-            res += "," + it.toSqlValue()
-        }
-
-        return res.substring(1)
     }
 }

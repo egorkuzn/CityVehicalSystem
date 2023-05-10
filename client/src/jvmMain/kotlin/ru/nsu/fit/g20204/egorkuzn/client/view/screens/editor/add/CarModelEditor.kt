@@ -16,7 +16,7 @@ import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
-object AuxiliaryModelEditor : AbstractEditorScreen("Модели специализированного транспорта") {
+object CarModelEditor: AbstractEditorScreen("Модели авто") {
     @Composable
     override fun updateContent() {
     }
@@ -26,7 +26,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
     }
 
     private val modelName = mutableStateOf("")
-    private val modelDescription = mutableStateOf("")
+    private val passengersCapacity = mutableStateOf("")
 
     @Composable
     override fun addContent() {
@@ -38,7 +38,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
         ) {
             Row {
                 StringField.render("Название модели", modelName, adderErrorFlag)
-                StringField.render("Описание", modelDescription, adderErrorFlag)
+                StringField.render("Число пассажиров", passengersCapacity, adderErrorFlag)
             }
 
             sendButton(scope, adderErrorFlag)
@@ -58,7 +58,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
                             .addModelAuxiliary(
                                 AddAuxiliaryModelDto(
                                     modelName.value,
-                                    modelDescription.value
+                                    passengersCapacity.value
                                 )
                             )
                     } catch (e: HttpException) {
@@ -79,11 +79,11 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
     override fun getData() = runBlocking {
         RetrofitBuilder
             .infoApi()
-            .getAuxiliaryModel()
+            .getCarModel()
             .map {
                 listOf(
                     it.modelName,
-                    it.description
+                    it.capacity
                 )
             }
     }
