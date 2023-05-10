@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.g20204.egorkuzn.server.service.QueryService
 
 @RestController
-@Tag(name = "")
-@RequestMapping("api/v1/city-vehicle-system/")
+@Tag(name = "Запросы")
+@RequestMapping("api/v1/city-vehicle-system/query")
 class QueryController(@Autowired val queryService: QueryService) {
     @Operation(summary = "Получение информации о грузоперевозках")
     @GetMapping("cargo-volume-stat")

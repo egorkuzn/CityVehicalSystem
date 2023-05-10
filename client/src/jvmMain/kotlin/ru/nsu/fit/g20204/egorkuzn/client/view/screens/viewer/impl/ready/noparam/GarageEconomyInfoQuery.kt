@@ -20,7 +20,7 @@ object GarageEconomyInfoQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getGarageEconomyInfo()
             .map {
                 listOf(

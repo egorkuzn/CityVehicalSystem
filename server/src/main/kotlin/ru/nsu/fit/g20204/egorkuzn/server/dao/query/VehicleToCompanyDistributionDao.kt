@@ -2,12 +2,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.VehicleToCompanyDistributionEntity
 import java.sql.ResultSet
 
 @Repository
-class VehicleToCompanyDistributionDao(jdbcConfig: JdbcConfig): BaseDao<VehicleToCompanyDistributionEntity>(jdbcConfig) {
+class VehicleToCompanyDistributionDao(jdbcConfig: JdbcConfig): AbstractQueryRunner<VehicleToCompanyDistributionEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         VehicleToCompanyDistributionEntity(
             getInt("DTruck"),

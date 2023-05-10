@@ -3,12 +3,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.InfoAboutAutoparkEntity
 import java.sql.ResultSet
 
 @Repository
-class InfoAboutAutoparkDao(@Autowired jdbcConfig: JdbcConfig) : BaseDao<InfoAboutAutoparkEntity>(jdbcConfig) {
+class InfoAboutAutoparkDao(@Autowired jdbcConfig: JdbcConfig) : AbstractQueryRunner<InfoAboutAutoparkEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         InfoAboutAutoparkEntity(
             getString("Model name")

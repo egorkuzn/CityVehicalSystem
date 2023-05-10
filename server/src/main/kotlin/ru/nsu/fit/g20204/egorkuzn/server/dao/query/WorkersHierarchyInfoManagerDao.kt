@@ -2,12 +2,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.WorkersHierarchyInfoManagerEntity
 import java.sql.ResultSet
 
 @Repository
-class WorkersHierarchyInfoManagerDao(jdbcConfig: JdbcConfig): BaseDao<WorkersHierarchyInfoManagerEntity>(jdbcConfig) {
+class WorkersHierarchyInfoManagerDao(jdbcConfig: JdbcConfig): AbstractQueryRunner<WorkersHierarchyInfoManagerEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         WorkersHierarchyInfoManagerEntity(
             getString("firstname"),

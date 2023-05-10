@@ -3,12 +3,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.VehicleAddArchiveEntity
 import java.sql.ResultSet
 
 @Repository
-class VehicleAddArchiveDao(@Autowired jdbcConfig: JdbcConfig): BaseDao<VehicleAddArchiveEntity>(jdbcConfig) {
+class VehicleAddArchiveDao(@Autowired jdbcConfig: JdbcConfig): AbstractQueryRunner<VehicleAddArchiveEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         VehicleAddArchiveEntity(
             getLong("vehicle_id"),

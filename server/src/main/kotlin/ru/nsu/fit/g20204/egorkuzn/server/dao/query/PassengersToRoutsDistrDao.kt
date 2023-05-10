@@ -2,12 +2,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.PassengersToRoutsEntity
 import java.sql.ResultSet
 
 @Repository
-class PassengersToRoutsDistrDao(jdbcConfig: JdbcConfig) : BaseDao<PassengersToRoutsEntity>(jdbcConfig) {
+class PassengersToRoutsDistrDao(jdbcConfig: JdbcConfig) : AbstractQueryRunner<PassengersToRoutsEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         PassengersToRoutsEntity(
             getLong("route_id"),

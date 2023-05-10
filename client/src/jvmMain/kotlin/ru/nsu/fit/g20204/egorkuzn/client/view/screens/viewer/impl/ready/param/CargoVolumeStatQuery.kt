@@ -7,7 +7,6 @@ import androidx.compose.ui.Alignment
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.map.TruckToIdDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.screens.viewer.AbstractParamQueryScreen
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.DateField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.menu.GenericDropdownMenu
@@ -34,7 +33,7 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
     override fun getData() = runBlocking {
         if (isFirstTime) launch {
             mapper = RetrofitBuilder
-                .apiImpl()
+                .infoApi()
                 .getTruckToVehicleId()
                 .map {
                     Pair(it.modelName, it.vehicleId)
@@ -42,7 +41,7 @@ object CargoVolumeStatQuery : AbstractParamQueryScreen(
         }
 
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getCargoVolumeStat(
                 vehicleId.value,
                 dateFrom.value,

@@ -14,7 +14,7 @@ object InfoAboutAutoparkQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getInfoAboutAutopark()
             .map{
                 listOf(it.modelName)

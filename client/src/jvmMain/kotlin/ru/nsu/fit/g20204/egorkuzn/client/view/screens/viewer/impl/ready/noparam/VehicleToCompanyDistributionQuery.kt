@@ -19,7 +19,7 @@ object VehicleToCompanyDistributionQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getVehicleToCompanyDistribution()
             .map {
                 with(it) {

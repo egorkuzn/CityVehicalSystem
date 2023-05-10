@@ -14,7 +14,7 @@ object DriversCarDistributionQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getDriversCarDistribution()
             .map {
                 listOf(

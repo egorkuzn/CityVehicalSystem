@@ -8,8 +8,6 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import ru.nsu.fit.g20204.egorkuzn.client.controller.CityVehicleSystemApi
-import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import java.awt.Dimension
 
 class SizeWindows {

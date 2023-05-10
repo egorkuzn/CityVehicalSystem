@@ -2,10 +2,9 @@ package ru.nsu.fit.g20204.egorkuzn.client.controller
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.map.TruckToIdDto
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.query.*
 
-interface CityVehicleSystemApi {
+interface CityVehicleQueryApi {
     @GET("cargo-volume-stat")
     suspend fun getCargoVolumeStat(
         @Query("vehicleId") vehicleId: Long,
@@ -80,7 +79,4 @@ interface CityVehicleSystemApi {
     suspend fun getWorkersHierarchyInfoManager(
         @Query("managerId") managerId: Long
     ): List<WorkersHierarchyInfoManagerDto>
-
-    @GET("model/truck")
-    suspend fun getTruckToVehicleId(): List<TruckToIdDto>
 }

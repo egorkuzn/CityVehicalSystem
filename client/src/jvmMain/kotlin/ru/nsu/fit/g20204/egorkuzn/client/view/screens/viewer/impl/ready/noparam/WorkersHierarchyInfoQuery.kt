@@ -21,7 +21,7 @@ object WorkersHierarchyInfoQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getWorkersHierarchyInfo()
             .map {
                 listOf(

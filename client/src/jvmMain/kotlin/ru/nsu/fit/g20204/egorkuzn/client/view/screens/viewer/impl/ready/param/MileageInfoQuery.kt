@@ -38,7 +38,7 @@ object MileageInfoQuery : AbstractParamQueryScreen(
     override fun getData() = runBlocking {
         launch {
             vehicleMap = RetrofitBuilder
-                .apiImpl()
+                .queryApi()
                 .getInfoAboutAutopark()
                 .map {
                     Pair(it.modelName, it.modelName.substring(0, it.modelName.indexOf("|")))
@@ -46,7 +46,7 @@ object MileageInfoQuery : AbstractParamQueryScreen(
         }
 
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getMileageInfo(
                 paramType.value,
                 param.value,

@@ -2,12 +2,12 @@ package ru.nsu.fit.g20204.egorkuzn.server.dao.query
 
 import org.springframework.stereotype.Repository
 import ru.nsu.fit.g20204.egorkuzn.server.config.JdbcConfig
-import ru.nsu.fit.g20204.egorkuzn.server.dao.BaseDao
+import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractQueryRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.query.RepairsStatNodeEntity
 import java.sql.ResultSet
 
 @Repository
-class RepairsStatNodeDao(jdbcConfig: JdbcConfig) : BaseDao<RepairsStatNodeEntity>(jdbcConfig) {
+class RepairsStatNodeDao(jdbcConfig: JdbcConfig) : AbstractQueryRunner<RepairsStatNodeEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         RepairsStatNodeEntity(
             getString("description"),

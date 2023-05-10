@@ -14,7 +14,7 @@ object PassengersToRoutsQuery: AbstractNoParamQueryScreen(
 
     override fun getData() = runBlocking {
         RetrofitBuilder
-            .apiImpl()
+            .queryApi()
             .getPassengerToRoutsDistro()
             .map {
                 listOf(
