@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.client.controller
+package ru.nsu.fit.g20204.egorkuzn.client.controller.editor
 
 import retrofit2.http.Body
 import retrofit2.http.POST

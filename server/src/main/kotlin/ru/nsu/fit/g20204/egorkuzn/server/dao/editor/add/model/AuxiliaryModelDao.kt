@@ -7,6 +7,6 @@ import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractOneTableInsertRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddAuxiliaryModelEntity
 
 @Repository
-class AddAuxiliaryModelDao(@Autowired jdbcConfig: JdbcConfig): AbstractOneTableInsertRunner<AddAuxiliaryModelEntity> (jdbcConfig) {
+class AuxiliaryModelDao(@Autowired jdbcConfig: JdbcConfig): AbstractOneTableInsertRunner<AddAuxiliaryModelEntity> (jdbcConfig) {
     override val tableName: String = "Auxiliary models"
 }

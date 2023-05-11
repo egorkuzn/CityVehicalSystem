@@ -8,10 +8,10 @@ import java.sql.SQLException
 import java.sql.Statement
 
 @Repository
-class AddPassengersTransportDao (
+class PassengersTransportDao (
     jdbcConfig: JdbcConfig
 ): BaseDao(jdbcConfig) {
-    fun sqlRun(
+    fun add(
         tableName: String,
         newPassengerModel: AddPassengersModelEntity
     ): Boolean {

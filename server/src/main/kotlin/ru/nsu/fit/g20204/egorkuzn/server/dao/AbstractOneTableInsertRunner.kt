@@ -10,7 +10,7 @@ abstract class AbstractOneTableInsertRunner<T : SqlInsertable>(
 ): BaseDao(jdbcConfig) {
     abstract val tableName: String
 
-    fun sqlRun(
+    fun add(
         value: T
     ): Boolean {
         val statement: Statement = connection.createStatement() ?: return false

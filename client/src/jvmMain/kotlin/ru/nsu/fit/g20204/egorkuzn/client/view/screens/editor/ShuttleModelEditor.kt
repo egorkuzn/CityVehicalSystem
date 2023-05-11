@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.add
+package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,12 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
-object BusModelEditor : AbstractEditorScreen("Модели автобусов") {
+object ShuttleModelEditor : AbstractEditorScreen("Модели маршруток") {
     @Composable
     override fun updateContent() {
     }
@@ -57,7 +56,7 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
                     try {
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
-                            .addModelBus(
+                            .addModelShuttle(
                                 AddPassengersModelDto(
                                     modelName.value,
                                     modelCapacity.value
@@ -81,7 +80,7 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
     override fun getData() = runBlocking {
         RetrofitBuilder
             .infoApi()
-            .getBusModel()
+            .getShuttleModel()
             .map {
                 listOf(
                     it.modelName,

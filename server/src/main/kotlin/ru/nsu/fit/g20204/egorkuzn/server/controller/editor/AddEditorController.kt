@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.server.controller
+package ru.nsu.fit.g20204.egorkuzn.server.controller.editor
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddAuxiliaryModelEntity
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddTruckModelEntity
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddPassengersModelEntity
-import ru.nsu.fit.g20204.egorkuzn.server.service.AddEditorService
+import ru.nsu.fit.g20204.egorkuzn.server.service.editor.AddEditorService
 
 @RestController
 @Tag(name = "Модификация таблицы")
-@RequestMapping("api/v1/city-vehicle-system/editor/add")
+@RequestMapping("api/v1/city-vehicle-system/editor")
 class AddEditorController(@Autowired val addEditorService: AddEditorService) {
     @Operation(summary = "Добавление новой модели спец транспорта")
     @PostMapping("model/auxiliary")

@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.nsu.fit.g20204.egorkuzn.client.view.navcontroller.NavController
-import ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.add.AbstractEditorScreen
+import ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.AbstractEditorScreen
 
 object EditingMasterScreen: AbstractScreen(
     "Редактирование данных"

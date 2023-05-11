@@ -7,7 +7,7 @@ import ru.nsu.fit.g20204.egorkuzn.server.dao.AbstractOneTableInsertRunner
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddTruckModelEntity
 
 @Repository
-class AddTruckModelDao(@Autowired jdbcConfig: JdbcConfig) :
+class TruckModelDao(@Autowired jdbcConfig: JdbcConfig) :
     AbstractOneTableInsertRunner<AddTruckModelEntity>(jdbcConfig) {
     override val tableName: String = "Trucks models"
 }

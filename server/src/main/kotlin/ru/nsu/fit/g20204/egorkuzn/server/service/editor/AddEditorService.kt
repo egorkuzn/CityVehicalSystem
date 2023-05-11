@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.server.service
+package ru.nsu.fit.g20204.egorkuzn.server.service.editor
 
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddAuxiliaryModelEntity
 import ru.nsu.fit.g20204.egorkuzn.server.model.entity.editor.add.models.AddPassengersModelEntity

@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.add
+package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -27,7 +27,9 @@ abstract class AbstractEditorScreen(val description: String) : AbstractScreen(de
         val listOfEditors = listOf(
             AuxiliaryModelEditor,
             BusModelEditor,
-            CarModelEditor
+            CarModelEditor,
+            ShuttleModelEditor,
+            TruckModelEditor
         )
     }
 

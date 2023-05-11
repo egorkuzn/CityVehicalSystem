@@ -4,7 +4,7 @@ import ru.nsu.fit.g20204.egorkuzn.server.model.entity.SqlInsertable
 
 data class AddTruckModelEntity(
     val modelName: String,
-    val description: String
+    val cargoCapacity: Int
 ) : SqlInsertable {
-    override fun toSqlValue() = "(DEFAULT, '$modelName', '$description')"
+    override fun toSqlValue() = "(DEFAULT, '$modelName', $cargoCapacity)"
 }

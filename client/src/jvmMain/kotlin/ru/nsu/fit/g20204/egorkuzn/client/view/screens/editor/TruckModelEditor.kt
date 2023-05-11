@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.add
+package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,10 +14,11 @@ import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddTruckModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
-object CarModelEditor : AbstractEditorScreen("Модели авто") {
+object TruckModelEditor : AbstractEditorScreen("Модели грузовиков") {
     @Composable
     override fun updateContent() {
     }
@@ -39,7 +40,7 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
         ) {
             Row {
                 StringField.render("Название модели", modelName, adderErrorFlag)
-                IntField.render("Вместимость", modelCapacity, adderErrorFlag)
+                IntField.render("Вместимость т", modelCapacity, adderErrorFlag)
             }
 
             sendButton(scope, adderErrorFlag)
@@ -48,15 +49,14 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
 
     @Composable
     fun sendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
-
         IconButton(
             onClick = {
                 scope.launch {
                     try {
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
-                            .addModelCar(
-                                AddPassengersModelDto(
+                            .addModelTruck(
+                                AddTruckModelDto(
                                     modelName.value,
                                     modelCapacity.value
                                 )
@@ -73,17 +73,17 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
 
     override fun getHead() = listOf(
         "Название модели",
-        "Число пассажиров"
+        "Максимальная масса груза в т"
     )
 
     override fun getData() = runBlocking {
         RetrofitBuilder
             .infoApi()
-            .getCarModel()
+            .getTruckModel()
             .map {
                 listOf(
                     it.modelName,
-                    it.capacity.toString()
+                    it.cargoCapacity.toString()
                 )
             }
     }

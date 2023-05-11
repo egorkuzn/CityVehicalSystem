@@ -1,4 +1,4 @@
-package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor.add
+package ru.nsu.fit.g20204.egorkuzn.client.view.screens.editor
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,10 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
-object AuxiliaryModelEditor : AbstractEditorScreen("Модели специализированного транспорта") {
+object CarModelEditor : AbstractEditorScreen("Модели авто") {
     @Composable
     override fun updateContent() {
     }
@@ -26,7 +27,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
     }
 
     private val modelName = mutableStateOf("")
-    private val modelDescription = mutableStateOf("")
+    private val modelCapacity = mutableStateOf(0)
 
     @Composable
     override fun addContent() {
@@ -38,7 +39,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
         ) {
             Row {
                 StringField.render("Название модели", modelName, adderErrorFlag)
-                StringField.render("Описание", modelDescription, adderErrorFlag)
+                IntField.render("Вместимость", modelCapacity, adderErrorFlag)
             }
 
             sendButton(scope, adderErrorFlag)
@@ -48,17 +49,16 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
     @Composable
     fun sendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
 
-
         IconButton(
             onClick = {
                 scope.launch {
                     try {
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
-                            .addModelAuxiliary(
-                                AddAuxiliaryModelDto(
+                            .addModelCar(
+                                AddPassengersModelDto(
                                     modelName.value,
-                                    modelDescription.value
+                                    modelCapacity.value
                                 )
                             )
                     } catch (e: HttpException) {
@@ -73,17 +73,17 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
 
     override fun getHead() = listOf(
         "Название модели",
-        "Описание"
+        "Число пассажиров"
     )
 
     override fun getData() = runBlocking {
         RetrofitBuilder
             .infoApi()
-            .getAuxiliaryModel()
+            .getCarModel()
             .map {
                 listOf(
                     it.modelName,
-                    it.description
+                    it.capacity.toString()
                 )
             }
     }
