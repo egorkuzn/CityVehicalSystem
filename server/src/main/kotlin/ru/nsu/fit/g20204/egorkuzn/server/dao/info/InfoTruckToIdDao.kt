@@ -8,7 +8,7 @@ import ru.nsu.fit.g20204.egorkuzn.server.model.entity.info.TruckToIdEntity
 import java.sql.ResultSet
 
 @Repository
-class TruckToIdDao(@Autowired jdbcConfig: JdbcConfig): AbstractQueryRunner<TruckToIdEntity>(jdbcConfig) {
+class InfoTruckToIdDao(@Autowired jdbcConfig: JdbcConfig): AbstractQueryRunner<TruckToIdEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         TruckToIdEntity(
             resultSet.getString("model_name"),

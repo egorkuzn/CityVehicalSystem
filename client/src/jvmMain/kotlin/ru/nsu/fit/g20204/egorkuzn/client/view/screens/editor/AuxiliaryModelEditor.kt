@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AuxiliaryModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
 object AuxiliaryModelEditor : AbstractEditorScreen("Модели специализированного транспорта") {
@@ -23,6 +23,19 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
 
     @Composable
     override fun deleteContent() {
+        val deleterErrorFlag = remember { mutableStateOf(false) }
+        val scope = rememberCoroutineScope()
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row {
+                StringField.render("Название модели", modelName, deleterErrorFlag)
+                StringField.render("Описание", modelDescription, deleterErrorFlag)
+            }
+
+            deleteSendButton(scope, deleterErrorFlag)
+        }
     }
 
     private val modelName = mutableStateOf("")
@@ -41,14 +54,12 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
                 StringField.render("Описание", modelDescription, adderErrorFlag)
             }
 
-            sendButton(scope, adderErrorFlag)
+            addSendButton(scope, adderErrorFlag)
         }
     }
 
     @Composable
-    fun sendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
-
-
+    fun addSendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
         IconButton(
             onClick = {
                 scope.launch {
@@ -56,7 +67,7 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
                             .addModelAuxiliary(
-                                AddAuxiliaryModelDto(
+                                AuxiliaryModelDto(
                                     modelName.value,
                                     modelDescription.value
                                 )
@@ -64,6 +75,30 @@ object AuxiliaryModelEditor : AbstractEditorScreen("Модели специал�
                     } catch (e: HttpException) {
                         println(e.response())
                         adderErrorFlag.value = true
+                    }
+                }
+            },
+            content = { Icon(imageVector = Icons.Filled.Send, contentDescription = " ") }
+        )
+    }
+
+    @Composable
+    fun deleteSendButton(scope: CoroutineScope, deleterErrorFlag: MutableState<Boolean>) {
+        IconButton(
+            onClick = {
+                scope.launch {
+                    try {
+                        deleterErrorFlag.value = !RetrofitBuilder
+                            .editorDeleteApi()
+                            .deleteModelAuxiliary(
+                                AuxiliaryModelDto(
+                                    modelName.value,
+                                    modelDescription.value
+                                )
+                            )
+                    } catch (e: HttpException) {
+                        println(e.response())
+                        deleterErrorFlag.value = true
                     }
                 }
             },

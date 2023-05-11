@@ -7,12 +7,12 @@ import ru.nsu.fit.g20204.egorkuzn.server.service.InfoService
 
 @Service
 class InfoServiceImpl(
-    @Autowired val truckToIdDao: TruckToIdDao,
-    @Autowired val auxiliaryModelDao: AuxiliaryModelDao,
-    @Autowired val busModelDao: BusModelDao,
-    @Autowired val carModelDao: CarModelDao,
-    @Autowired val shuttleModelDao: ShuttleModelDao,
-    @Autowired val truckModelDao: TruckModelDao
+    @Autowired val truckToIdDao: InfoTruckToIdDao,
+    @Autowired val auxiliaryModelDao: InfoAuxiliaryModelDao,
+    @Autowired val busModelDao: InfoBusModelDao,
+    @Autowired val carModelDao: InfoCarModelDao,
+    @Autowired val shuttleModelDao: InfoShuttleModelDao,
+    @Autowired val truckModelDao: InfoTruckModelDao
 ): InfoService {
     override fun getTruckToId() =  truckToIdDao.runQuery()
 

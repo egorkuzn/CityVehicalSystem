@@ -7,7 +7,7 @@ import ru.nsu.fit.g20204.egorkuzn.server.model.entity.info.PassengersModelEntity
 import java.sql.ResultSet
 
 @Repository
-class ShuttleModelDao(jdbcConfig: JdbcConfig) : AbstractQueryRunner<PassengersModelEntity>(jdbcConfig) {
+class InfoBusModelDao(jdbcConfig: JdbcConfig) : AbstractQueryRunner<PassengersModelEntity>(jdbcConfig) {
     override fun returnEntity(resultSet: ResultSet) = with(resultSet) {
         PassengersModelEntity(
             getString("model_name"),
@@ -18,11 +18,11 @@ class ShuttleModelDao(jdbcConfig: JdbcConfig) : AbstractQueryRunner<PassengersMo
 
     fun runQuery() = sqlRun(
         """
-            select SM.model_name,
+            select BM.model_name,
                    PM.model_id,
                    PM.passengers_capacity
-            from "Shuttles models" as SM left join "Passenger transport models" as PM
-            on SM.shuttle_model_id = PM.model_id
+            from "Buses models" as BM left join "Passenger transport models" as PM
+                  on BM.bus_model_id = PM.model_id
         """.trimIndent()
     )
 }

@@ -1,6 +1,6 @@
 package ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add
 
-data class AddTruckModelDto(
+data class PassengersModelDto(
     val modelName: String,
-    val cargoCapacity: Int
+    val passengersCapacity: Int
 )

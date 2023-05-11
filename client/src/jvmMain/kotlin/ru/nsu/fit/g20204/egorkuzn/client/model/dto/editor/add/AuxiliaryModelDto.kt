@@ -1,6 +1,6 @@
 package ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add
 
-data class AddPassengersModelDto(
+data class AuxiliaryModelDto(
     val modelName: String,
-    val passengersCapacity: Int
+    val description: String
 )

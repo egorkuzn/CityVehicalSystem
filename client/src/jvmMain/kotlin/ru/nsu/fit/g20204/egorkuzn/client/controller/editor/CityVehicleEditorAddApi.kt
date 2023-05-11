@@ -6,17 +6,17 @@ import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.*
 
 interface CityVehicleEditorAddApi {
     @POST("model/auxiliary")
-    suspend fun addModelAuxiliary(@Body body: AddAuxiliaryModelDto): Boolean
+    suspend fun addModelAuxiliary(@Body body: AuxiliaryModelDto): Boolean
 
     @POST("model/truck")
-    suspend fun addModelTruck(@Body body: AddTruckModelDto): Boolean
+    suspend fun addModelTruck(@Body body: TruckModelDto): Boolean
 
     @POST("model/car")
-    suspend fun addModelCar(@Body body: AddPassengersModelDto): Boolean
+    suspend fun addModelCar(@Body body: PassengersModelDto): Boolean
 
     @POST("model/shuttle")
-    suspend fun addModelShuttle(@Body body: AddPassengersModelDto): Boolean
+    suspend fun addModelShuttle(@Body body: PassengersModelDto): Boolean
 
     @POST("model/bus")
-    suspend fun addModelBus(@Body body: AddPassengersModelDto): Boolean
+    suspend fun addModelBus(@Body body: PassengersModelDto): Boolean
 }

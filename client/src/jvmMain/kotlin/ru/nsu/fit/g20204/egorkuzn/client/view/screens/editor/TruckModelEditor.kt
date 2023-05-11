@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddTruckModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.TruckModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
@@ -56,7 +55,7 @@ object TruckModelEditor : AbstractEditorScreen("Модели грузовико�
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
                             .addModelTruck(
-                                AddTruckModelDto(
+                                TruckModelDto(
                                     modelName.value,
                                     modelCapacity.value
                                 )
