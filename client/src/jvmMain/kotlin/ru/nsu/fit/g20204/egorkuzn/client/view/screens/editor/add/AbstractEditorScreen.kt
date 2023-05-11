@@ -25,7 +25,9 @@ abstract class AbstractEditorScreen(val description: String) : AbstractScreen(de
 
     companion object {
         val listOfEditors = listOf(
-            AuxiliaryModelEditor
+            AuxiliaryModelEditor,
+            BusModelEditor,
+            CarModelEditor
         )
     }
 

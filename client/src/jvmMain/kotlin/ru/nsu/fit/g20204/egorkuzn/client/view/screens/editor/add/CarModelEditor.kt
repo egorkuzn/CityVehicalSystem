@@ -13,10 +13,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
-import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
-object CarModelEditor: AbstractEditorScreen("Модели авто") {
+object CarModelEditor : AbstractEditorScreen("Модели авто") {
     @Composable
     override fun updateContent() {
     }
@@ -26,7 +27,7 @@ object CarModelEditor: AbstractEditorScreen("Модели авто") {
     }
 
     private val modelName = mutableStateOf("")
-    private val passengersCapacity = mutableStateOf("")
+    private val modelCapacity = mutableStateOf(0)
 
     @Composable
     override fun addContent() {
@@ -38,7 +39,7 @@ object CarModelEditor: AbstractEditorScreen("Модели авто") {
         ) {
             Row {
                 StringField.render("Название модели", modelName, adderErrorFlag)
-                StringField.render("Число пассажиров", passengersCapacity, adderErrorFlag)
+                IntField.render("Вместимость", modelCapacity, adderErrorFlag)
             }
 
             sendButton(scope, adderErrorFlag)
@@ -48,17 +49,16 @@ object CarModelEditor: AbstractEditorScreen("Модели авто") {
     @Composable
     fun sendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
 
-
         IconButton(
             onClick = {
                 scope.launch {
                     try {
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
-                            .addModelAuxiliary(
-                                AddAuxiliaryModelDto(
+                            .addModelCar(
+                                AddPassengersModelDto(
                                     modelName.value,
-                                    passengersCapacity.value
+                                    modelCapacity.value
                                 )
                             )
                     } catch (e: HttpException) {
@@ -73,7 +73,7 @@ object CarModelEditor: AbstractEditorScreen("Модели авто") {
 
     override fun getHead() = listOf(
         "Название модели",
-        "Описание"
+        "Число пассажиров"
     )
 
     override fun getData() = runBlocking {
@@ -83,7 +83,7 @@ object CarModelEditor: AbstractEditorScreen("Модели авто") {
             .map {
                 listOf(
                     it.modelName,
-                    it.capacity
+                    it.capacity.toString()
                 )
             }
     }

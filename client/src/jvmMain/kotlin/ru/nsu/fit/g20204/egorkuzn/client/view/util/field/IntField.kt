@@ -23,14 +23,14 @@ object IntField {
                 val value = it.toIntOrNull()
 
                 if (value != null) {
-                    error.value = false
+                    error.value = value <= 0
                     newState = value
                     mutableState.value = newState
                 } else {
                     error.value = true
                 }
             },
-            modifier = Modifier.width(200.dp),
+            modifier = Modifier.width(100.dp),
             label = { Text(text = label) }
         )
     }

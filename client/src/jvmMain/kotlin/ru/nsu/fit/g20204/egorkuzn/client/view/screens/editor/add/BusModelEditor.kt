@@ -14,6 +14,7 @@ import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 import ru.nsu.fit.g20204.egorkuzn.client.controller.RetrofitBuilder
 import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddAuxiliaryModelDto
+import ru.nsu.fit.g20204.egorkuzn.client.model.dto.editor.add.AddPassengersModelDto
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.IntField
 import ru.nsu.fit.g20204.egorkuzn.client.view.util.field.StringField
 
@@ -27,7 +28,6 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
     }
 
     private val modelName = mutableStateOf("")
-    private val modelDescription = mutableStateOf("")
     private val modelCapacity = mutableStateOf(0)
 
     @Composable
@@ -40,7 +40,6 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
         ) {
             Row {
                 StringField.render("Название модели", modelName, adderErrorFlag)
-                StringField.render("Описание", modelDescription, adderErrorFlag)
                 IntField.render("Вместимость", modelCapacity, adderErrorFlag)
             }
 
@@ -58,10 +57,10 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
                     try {
                         adderErrorFlag.value = !RetrofitBuilder
                             .editorAddApi()
-                            .addModelAuxiliary(
-                                AddAuxiliaryModelDto(
+                            .addModelBus(
+                                AddPassengersModelDto(
                                     modelName.value,
-                                    modelDescription.value
+                                    modelCapacity.value
                                 )
                             )
                     } catch (e: HttpException) {
@@ -76,7 +75,7 @@ object BusModelEditor : AbstractEditorScreen("Модели автобусов") 
 
     override fun getHead() = listOf(
         "Название модели",
-        "Количество пассажиров"
+        "Число пассажиров"
     )
 
     override fun getData() = runBlocking {
