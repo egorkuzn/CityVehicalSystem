@@ -10,7 +10,7 @@ class InfoServiceImpl(
     @Autowired val truckToIdDao: TruckToIdDao,
     @Autowired val auxiliaryModelDao: AuxiliaryModelDao,
     @Autowired val busModelDao: BusModelDao,
-    @Autowired val autoModelDao: AutoModelDao,
+    @Autowired val carModelDao: CarModelDao,
     @Autowired val shuttleModelDao: ShuttleModelDao,
     @Autowired val truckModelDao: TruckModelDao
 ): InfoService {
@@ -20,7 +20,7 @@ class InfoServiceImpl(
 
     override fun getBusModel() = busModelDao.runQuery()
 
-    override fun getAutoModel() = autoModelDao.runQuery()
+    override fun getCarModel() = carModelDao.runQuery()
 
     override fun getShuttleModel() = shuttleModelDao.runQuery()
 

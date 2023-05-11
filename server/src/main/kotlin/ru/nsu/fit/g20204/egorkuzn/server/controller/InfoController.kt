@@ -26,7 +26,7 @@ class InfoController(@Autowired val controllerService: InfoService) {
 
     @Operation(summary = "Получение моделей авто")
     @GetMapping("model/auxilicarary")
-    fun getAuto() = controllerService.getAutoModel()
+    fun getAuto() = controllerService.getCarModel()
 
     @Operation(summary = "Получение моделей маршрутного такси")
     @GetMapping("model/shuttle")

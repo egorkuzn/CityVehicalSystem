@@ -7,7 +7,7 @@ interface InfoService {
 
     fun getBusModel(): Any
 
-    fun getAutoModel(): Any
+    fun getCarModel(): Any
 
     fun getShuttleModel(): Any
 
