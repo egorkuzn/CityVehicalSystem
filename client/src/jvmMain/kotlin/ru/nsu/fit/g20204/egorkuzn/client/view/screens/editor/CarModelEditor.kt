@@ -24,6 +24,19 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
 
     @Composable
     override fun deleteContent() {
+        val deleterErrorFlag = remember { mutableStateOf(false) }
+        val scope = rememberCoroutineScope()
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row {
+                StringField.render("Название модели", modelName, deleterErrorFlag)
+                IntField.render("Описание", modelCapacity, deleterErrorFlag)
+            }
+
+            deleteSendButton(scope, deleterErrorFlag)
+        }
     }
 
     private val modelName = mutableStateOf("")
@@ -42,12 +55,12 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
                 IntField.render("Вместимость", modelCapacity, adderErrorFlag)
             }
 
-            sendButton(scope, adderErrorFlag)
+            addSendButton(scope, adderErrorFlag)
         }
     }
 
     @Composable
-    fun sendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
+    fun addSendButton(scope: CoroutineScope, adderErrorFlag: MutableState<Boolean>) {
 
         IconButton(
             onClick = {
@@ -64,6 +77,30 @@ object CarModelEditor : AbstractEditorScreen("Модели авто") {
                     } catch (e: HttpException) {
                         println(e.response())
                         adderErrorFlag.value = true
+                    }
+                }
+            },
+            content = { Icon(imageVector = Icons.Filled.Send, contentDescription = " ") }
+        )
+    }
+
+    @Composable
+    fun deleteSendButton(scope: CoroutineScope, deleterErrorFlag: MutableState<Boolean>) {
+        IconButton(
+            onClick = {
+                scope.launch {
+                    try {
+                        deleterErrorFlag.value = !RetrofitBuilder
+                            .editorDeleteApi()
+                            .deleteModelCar(
+                                PassengersModelDto(
+                                    modelName.value,
+                                    modelCapacity.value
+                                )
+                            )
+                    } catch (e: HttpException) {
+                        println(e.response())
+                        deleterErrorFlag.value = true
                     }
                 }
             },

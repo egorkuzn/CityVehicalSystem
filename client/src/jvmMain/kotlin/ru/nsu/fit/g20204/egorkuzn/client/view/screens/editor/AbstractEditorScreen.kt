@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -37,22 +38,25 @@ abstract class AbstractEditorScreen(val description: String) : AbstractScreen(de
 
     @Composable
     override fun content(navController: NavController) {
-        if (!isLaunched) {
-            Column {
-                Button(
-                    onClick = { onUpdate() },
-                    Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 0.dp)
-                ) { Text("Загрузка...") }
-                launchEffect { !isLaunched }
+        Column {
+            if (!isLaunched) {
+                Column {
+                    Button(
+                        onClick = { onUpdate() },
+                        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 0.dp)
+                    ) { Text("Загрузка...") }
+                    launchEffect { !isLaunched }
+                }
+            } else {
+                Column {
+                    Button(
+                        onClick = { onUpdate() },
+                        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 0.dp)
+                    ) { Text("Обновить") }
+                }
             }
-        } else {
-            Column {
-                Button(
-                    onClick = { onUpdate() },
-                    Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 0.dp)
-                ) { Text("Обновить") }
-                editorContent()
-            }
+
+            editorContent()
         }
     }
 
@@ -92,7 +96,7 @@ abstract class AbstractEditorScreen(val description: String) : AbstractScreen(de
                             }
                         },
                         text = {
-                            androidx.compose.material3.Text(text = text)
+                            Text(text = text)
                         },
                     )
                 }
@@ -103,6 +107,7 @@ abstract class AbstractEditorScreen(val description: String) : AbstractScreen(de
                 state = pagerState,
                 modifier = Modifier.weight(1.0f)
             ) { currentPage ->
+
                 when(currentPage) {
                     0 -> addContent()
                     1 -> deleteContent()
